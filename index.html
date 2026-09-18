@@ -1,0 +1,881 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نادي التاروت | مكتبة الروايات</title>
+
+<style>
+:root {
+  --bg: #101319;
+  --panel: #191e27;
+  --panel2: #222936;
+  --text: #e8e4dc;
+  --muted: #969ba8;
+  --gold: #c7ad78;
+  --line: #343b48;
+  --reader-size: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Tahoma, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+header {
+  height: 70px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: #141820;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.logo-symbol {
+  font-size: 28px;
+}
+
+.header-btn, .btn {
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+.btn.gold {
+  background: var(--gold);
+  color: #191710;
+  border-color: var(--gold);
+  font-weight: bold;
+}
+
+.btn:hover, .header-btn:hover {
+  border-color: var(--gold);
+}
+
+main {
+  width: min(1100px, 92%);
+  margin: auto;
+}
+
+.hero {
+  margin: 28px 0;
+  padding: 40px 24px;
+  text-align: center;
+  border: 1px solid #4a4335;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 50% 120%, #45413a 0%, transparent 60%),
+    linear-gradient(145deg, #202631, #11151c 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "☾";
+  position: absolute;
+  left: 7%;
+  top: 8px;
+  color: #c7ad78;
+  font-size: 90px;
+  opacity: .12;
+}
+
+.hero .eyebrow {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 46px);
+  margin: 18px 0;
+}
+
+.hero p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 30px 0 18px;
+}
+
+.section-title h2 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.section-title h2::before {
+  content: "✦ ";
+  color: var(--gold);
+}
+
+.search {
+  width: 100%;
+  padding: 13px 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.book {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.book:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+
+.cover {
+  height: 180px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, #42404a, #20232d 65%, #151922);
+  border-bottom: 1px solid var(--line);
+  padding: 15px;
+}
+
+.cover .symbol {
+  font-size: 48px;
+  color: var(--gold);
+}
+
+.cover h3 {
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.book-info {
+  padding: 16px;
+}
+
+.book-info p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.progress {
+  height: 5px;
+  background: #303643;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress div {
+  height: 100%;
+  background: var(--gold);
+}
+
+.book-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.book-actions button {
+  flex: 1;
+  font-size: 13px;
+}
+
+.empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 35px;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Reader */
+
+#reader {
+  padding: 22px 0 60px;
+}
+
+.reader-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.reader-toolbar select {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 100%;
+}
+
+.reader-settings {
+  display: flex;
+  gap: 8px;
+}
+
+.reader-settings button {
+  width: 42px;
+  height: 40px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--gold);
+  border-radius: 8px;
+}
+
+.reader-paper {
+  max-width: 780px;
+  margin: auto;
+  padding: clamp(20px, 5vw, 55px);
+  background: #191c23;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.chapter-label {
+  color: var(--gold);
+  text-align: center;
+  font-size: 13px;
+}
+
+#chapterTitle {
+  text-align: center;
+  font-size: 27px;
+  margin: 20px 0 35px;
+  line-height: 1.7;
+}
+
+#chapterText {
+  font-size: var(--reader-size);
+  line-height: 2.15;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #e0ddd7;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 35px;
+}
+
+.chapter-nav button {
+  flex: 1;
+}
+
+footer {
+  margin-top: 55px;
+  border-top: 1px solid var(--line);
+  padding: 25px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Modal */
+
+dialog {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  width: min(500px, 92%);
+  padding: 25px;
+}
+
+dialog::backdrop {
+  background: #000b;
+  backdrop-filter: blur(5px);
+}
+
+dialog h2 {
+  margin-top: 0;
+  color: var(--gold);
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.field label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 12px;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 0 4%;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .hero {
+    padding: 30px 15px;
+  }
+
+  .library {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .cover {
+    height: 145px;
+  }
+
+  .cover .symbol {
+    font-size: 36px;
+  }
+
+  .book-info {
+    padding: 11px;
+  }
+
+  .book-actions {
+    flex-direction: column;
+  }
+
+  .reader-toolbar {
+    align-items: stretch;
+  }
+
+  #chapterTitle {
+    font-size: 23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-symbol">☾</span>
+    <span>THE TAROT CLUB</span>
+  </div>
+  <button class="header-btn" id="addTop">＋ رواية</button>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="eyebrow">THE FOOL'S GATHERING</div>
+    <h1>فوق الضباب الرمادي</h1>
+    <p>
+      مرحبًا بك أيها الأحمق.<br>
+      اجلس على مقعدك، واختر حكايتك التالية.
+    </p>
+    <button class="btn gold" id="browseBtn">دخول المكتبة ↓</button>
+  </section>
+
+  <section id="librarySection">
+    <div class="section-title">
+      <h2>مكتبة الروايات</h2>
+      <button class="btn gold" id="addBtn">＋ إضافة رواية</button>
+    </div>
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="ابحث عن رواية..."
+      aria-label="البحث عن رواية"
+    >
+
+    <div id="library" class="library"></div>
+  </section>
+
+  <section id="reader" class="hidden">
+    <div class="reader-toolbar">
+      <button class="btn" id="backBtn">← المكتبة</button>
+
+      <select id="chapterSelect" aria-label="اختيار الفصل"></select>
+
+      <div class="reader-settings">
+        <button id="fontDown" aria-label="تصغير الخط">A−</button>
+        <button id="fontUp" aria-label="تكبير الخط">A＋</button>
+      </div>
+    </div>
+
+    <article class="reader-paper">
+      <div class="chapter-label" id="chapterLabel"></div>
+      <h2 id="chapterTitle"></h2>
+      <div id="chapterText"></div>
+
+      <div class="chapter-nav">
+        <button class="btn" id="prevBtn">الفصل السابق</button>
+        <button class="btn gold" id="nextBtn">الفصل التالي</button>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer>
+  SEQUENCE UNKNOWN · THE GREY FOG AWAITS
+</footer>
+
+<dialog id="bookDialog">
+  <form id="bookForm">
+    <h2>إضافة رواية إلى المكتبة</h2>
+
+    <div class="field">
+      <label for="bookName">اسم الرواية</label>
+      <input id="bookName" required maxlength="120"
+        placeholder="اسم الرواية">
+    </div>
+
+    <div class="field">
+      <label for="bookAuthor">اسم الكاتب</label>
+      <input id="bookAuthor" maxlength="120"
+        placeholder="اسم الكاتب">
+    </div>
+
+    <div class="field">
+      <label for="bookDesc">وصف الرواية</label>
+      <textarea id="bookDesc" maxlength="1000"
+        placeholder="اكتب وصفًا قصيرًا..."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="bookSymbol">رمز الغلاف</label>
+      <select id="bookSymbol">
+        <option value="☾">☾ القمر</option>
+        <option value="♠">♠ البستوني</option>
+        <option value="✦">✦ النجمة</option>
+        <option value="☼">☼ الشمس</option>
+        <option value="⚜">⚜ الرمز الملكي</option>
+        <option value="𖤐">𖤐 النجمة الغامضة</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="bookChapters">الفصول (كل فصل يبدأ بسطر عنوان)</label>
+      <textarea id="bookChapters" required
+        placeholder="الفصل الأول: البداية
+اكتب نص الفصل هنا...
+
+الفصل الثاني: المجهول
+اكتب نص الفصل هنا..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button type="button" class="btn" id="cancelBtn">إلغاء</button>
+      <button type="submit" class="btn gold">إضافة للمكتبة</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const $ = id => document.getElementById(id);
+
+const STORAGE_KEY = "tarot-club-library-v1";
+
+const sampleBook = {
+  id: "sample-lotm",
+  name: "لورد الغوامض",
+  author: "Cuttlefish That Loves Diving",
+  description: "رحلة غامضة في عالم البخار والسحر والطقوس.",
+  symbol: "☾",
+  chapters: [
+    {
+      title: "الفصل الأول: الغريب",
+      text: "هذه مساحة تجريبية للقراءة.\n\nأضف نصوص رواياتك وفصولك الخاصة من خلال زر إضافة رواية.\n\nيمكنك تغيير حجم الخط والتنقل بين الفصول، وسيحفظ الموقع تقدمك تلقائيًا."
+    },
+    {
+      title: "الفصل الثاني: بداية الرحلة",
+      text: "هنا يبدأ الفصل الثاني.\n\nاستبدل هذا النص بنص الفصل الذي تريد قراءته."
+    }
+  ],
+  progress: 0
+};
+
+let books = loadBooks();
+let currentBookId = null;
+let currentChapter = 0;
+let fontSize = 20;
+
+function loadBooks() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved !== null) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) {
+    console.warn("تعذر تحميل المكتبة", e);
+  }
+
+  return [{ ...sampleBook }];
+}
+
+function saveBooks() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
+  } catch (e) {
+    alert("تعذر الحفظ. قد تكون مساحة التخزين ممتلئة.");
+  }
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function getCurrentBook() {
+  return books.find(book => book.id === currentBookId);
+}
+
+function renderLibrary() {
+  const query = $("search").value.trim().toLowerCase();
+
+  const filtered = books.filter(book =>
+    book.name.toLowerCase().includes(query) ||
+    (book.author || "").toLowerCase().includes(query)
+  );
+
+  if (!filtered.length) {
+    $("library").innerHTML =
+      '<div class="empty">لا توجد روايات مطابقة لبحثك.</div>';
+    return;
+  }
+
+  $("library").innerHTML = filtered.map(book => {
+    const progress = book.chapters.length
+      ? Math.round((book.progress || 0) / book.chapters.length * 100)
+      : 0;
+
+    return `
+      <article class="book">
+        <div class="cover">
+          <div>
+            <div class="symbol">${escapeHTML(book.symbol || "☾")}</div>
+            <h3>${escapeHTML(book.name)}</h3>
+          </div>
+        </div>
+
+        <div class="book-info">
+          <strong>${escapeHTML(book.name)}</strong>
+          <p>${escapeHTML(book.author || "كاتب مجهول")}</p>
+          <p>${book.chapters.length} فصل</p>
+
+          <div class="progress">
+            <div style="width:${progress}%"></div>
+          </div>
+
+          <div class="book-actions">
+            <button class="btn gold" data-open="${escapeHTML(book.id)}">
+              ${progress ? "متابعة القراءة" : "ابدأ القراءة"}
+            </button>
+            <button class="btn" data-delete="${escapeHTML(book.id)}">
+              حذف
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  $("library").querySelectorAll("[data-open]").forEach(button => {
+    button.addEventListener("click", () => {
+      openBook(button.dataset.open);
+    });
+  });
+
+  $("library").querySelectorAll("[data-delete]").forEach(button => {
+    button.addEventListener("click", () => {
+      deleteBook(button.dataset.delete);
+    });
+  });
+}
+
+function openBook(id) {
+  const book = books.find(item => item.id === id);
+  if (!book || !book.chapters.length) return;
+
+  currentBookId = id;
+  currentChapter = Math.min(
+    book.progress || 0,
+    book.chapters.length - 1
+  );
+
+  $("hero").classList.add("hidden");
+  $("librarySection").classList.add("hidden");
+  $("reader").classList.remove("hidden");
+
+  renderChapter();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderChapter() {
+  const book = getCurrentBook();
+  if (!book) return;
+
+  const chapter = book.chapters[currentChapter];
+  if (!chapter) return;
+
+  $("chapterLabel").textContent =
+    book.name + " · الفصل " + (currentChapter + 1);
+
+  $("chapterTitle").textContent = chapter.title;
+  $("chapterText").textContent = chapter.text;
+
+  $("chapterSelect").innerHTML = book.chapters.map((ch, i) =>
+    `<option value="${i}" ${i === currentChapter ? "selected" : ""}>
+      ${escapeHTML(ch.title)}
+    </option>`
+  ).join("");
+
+  $("prevBtn").disabled = currentChapter === 0;
+  $("nextBtn").disabled =
+    currentChapter === book.chapters.length - 1;
+
+  $("prevBtn").style.opacity =
+    currentChapter === 0 ? ".4" : "1";
+
+  $("nextBtn").style.opacity =
+    currentChapter === book.chapters.length - 1 ? ".4" : "1";
+
+  book.progress = currentChapter;
+  saveBooks();
+}
+
+function goToChapter(index) {
+  const book = getCurrentBook();
+  if (!book) return;
+
+  if (index < 0 || index >= book.chapters.length) return;
+
+  currentChapter = index;
+  renderChapter();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function backToLibrary() {
+  $("reader").classList.add("hidden");
+  $("hero").classList.remove("hidden");
+  $("librarySection").classList.remove("hidden");
+
+  currentBookId = null;
+  renderLibrary();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function deleteBook(id) {
+  const book = books.find(item => item.id === id);
+  if (!book) return;
+
+  if (!confirm(`هل تريد حذف رواية "${book.name}"؟`)) return;
+
+  books = books.filter(item => item.id !== id);
+  saveBooks();
+  renderLibrary();
+}
+
+function openAddDialog() {
+  $("bookForm").reset();
+  $("bookDialog").showModal();
+}
+
+function parseChapters(raw) {
+  // كل سطر يبدأ بكلمة "الفصل" يُعد بداية فصل جديد.
+  const lines = raw.split(/\r?\n/);
+  const chapters = [];
+  let title = "";
+  let text = [];
+
+  for (const line of lines) {
+    if (/^\s*الفصل\s+/.test(line)) {
+      if (title || text.length) {
+        chapters.push({
+          title: title || `الفصل ${chapters.length + 1}`,
+          text: text.join("\n").trim()
+        });
+      }
+
+      title = line.trim();
+      text = [];
+    } else {
+      text.push(line);
+    }
+  }
+
+  if (title || text.length) {
+    chapters.push({
+      title: title || `الفصل ${chapters.length + 1}`,
+      text: text.join("\n").trim()
+    });
+  }
+
+  return chapters.filter(chapter =>
+    chapter.title || chapter.text
+  );
+}
+
+$("addBtn").addEventListener("click", openAddDialog);
+$("addTop").addEventListener("click", openAddDialog);
+
+$("cancelBtn").addEventListener("click", () => {
+  $("bookDialog").close();
+});
+
+$("bookForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const name = $("bookName").value.trim();
+  const chapters = parseChapters($("bookChapters").value);
+
+  if (!name || !chapters.length) {
+    alert("أدخل اسم الرواية وفصلًا واحدًا على الأقل.");
+    return;
+  }
+
+  books.unshift({
+    id: crypto.randomUUID
+      ? crypto.randomUUID()
+      : String(Date.now()),
+    name,
+    author: $("bookAuthor").value.trim(),
+    description: $("bookDesc").value.trim(),
+    symbol: $("bookSymbol").value,
+    chapters,
+    progress: 0
+  });
+
+  saveBooks();
+  renderLibrary();
+  $("bookDialog").close();
+});
+
+$("search").addEventListener("input", renderLibrary);
+
+$("browseBtn").addEventListener("click", () => {
+  $("librarySection").scrollIntoView({ behavior: "smooth" });
+});
+
+$("backBtn").addEventListener("click", backToLibrary);
+
+$("prevBtn").addEventListener("click", () => {
+  goToChapter(currentChapter - 1);
+});
+
+$("nextBtn").addEventListener("click", () => {
+  goToChapter(currentChapter + 1);
+});
+
+$("chapterSelect").addEventListener("change", event => {
+  goToChapter(Number(event.target.value));
+});
+
+$("fontUp").addEventListener("click", () => {
+  fontSize = Math.min(fontSize + 2, 36);
+  $("chapterText").style.fontSize = fontSize + "px";
+});
+
+$("fontDown").addEventListener("click", () => {
+  fontSize = Math.max(fontSize - 2, 12);
+  $("chapterText").style.fontSize = fontSize + "px";
+});
+
+renderLibrary();
+</script>
+
+</body>
+</html>
