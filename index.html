@@ -1,440 +1,563 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نادي التاروت | مكتبة الروايات</title>
+<title>Tarot Club — مكتبة الروايات</title>
 
 <style>
-:root {
-  --bg: #101319;
-  --panel: #191e27;
-  --panel2: #222936;
-  --text: #e8e4dc;
-  --muted: #969ba8;
-  --gold: #c7ad78;
-  --line: #343b48;
-  --reader-size: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#080b12;
+    --bg2:#0d111b;
+    --card:#111722;
+    --card2:#151c29;
+    --blue:#2196f3;
+    --blue2:#64b5f6;
+    --gold:#d8b56a;
+    --text:#f0f3f8;
+    --muted:#8993a5;
+    --border:rgba(255,255,255,.08);
+    --danger:#e57373;
 }
 
-* {
-  box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Tahoma, Arial, sans-serif;
-  min-height: 100vh;
+body{
+    font-family:'Cairo',sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(33,150,243,.15),transparent 35%),
+        linear-gradient(180deg,#080b12,#06080d);
+    color:var(--text);
+    min-height:100vh;
 }
 
-button, input, textarea, select {
-  font: inherit;
+/* ================= HEADER ================= */
+
+header{
+    height:72px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(8,11,18,.92);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
 }
 
-button {
-  cursor: pointer;
+.nav{
+    max-width:1250px;
+    height:100%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    padding:0 20px;
 }
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
+.logo{
+    font-size:21px;
+    font-weight:800;
+    color:var(--gold);
+    white-space:nowrap;
+    cursor:pointer;
 }
 
-header {
-  height: 70px;
-  padding: 0 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  background: #141820;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+.logo span{
+    color:var(--blue2);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--gold);
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 1px;
+.nav-links{
+    display:flex;
+    gap:5px;
+    flex:1;
 }
 
-.logo-symbol {
-  font-size: 28px;
+.nav-links button{
+    background:none;
+    border:0;
+    color:var(--muted);
+    padding:10px 13px;
+    font-family:inherit;
+    cursor:pointer;
+    border-radius:8px;
+    transition:.2s;
 }
 
-.header-btn, .btn {
-  background: var(--panel2);
-  border: 1px solid var(--line);
-  color: var(--text);
-  padding: 10px 16px;
-  border-radius: 8px;
+.nav-links button:hover,
+.nav-links button.active{
+    background:rgba(33,150,243,.1);
+    color:white;
 }
 
-.btn.gold {
-  background: var(--gold);
-  color: #191710;
-  border-color: var(--gold);
-  font-weight: bold;
+.search{
+    width:220px;
+    position:relative;
 }
 
-.btn:hover, .header-btn:hover {
-  border-color: var(--gold);
+.search input{
+    width:100%;
+    background:#101620;
+    border:1px solid var(--border);
+    color:white;
+    padding:10px 14px;
+    border-radius:10px;
+    outline:none;
+    font-family:inherit;
 }
 
-main {
-  width: min(1100px, 92%);
-  margin: auto;
+.search input:focus{
+    border-color:rgba(33,150,243,.5);
 }
 
-.hero {
-  margin: 28px 0;
-  padding: 40px 24px;
-  text-align: center;
-  border: 1px solid #4a4335;
-  border-radius: 16px;
-  background:
-    radial-gradient(ellipse at 50% 120%, #45413a 0%, transparent 60%),
-    linear-gradient(145deg, #202631, #11151c 70%);
-  position: relative;
-  overflow: hidden;
+/* ================= HERO ================= */
+
+.hero{
+    max-width:1250px;
+    margin:35px auto 20px;
+    padding:55px 45px;
+    min-height:310px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:22px;
+    background:
+        radial-gradient(circle at 75% 30%,rgba(33,150,243,.2),transparent 30%),
+        radial-gradient(circle at 20% 100%,rgba(216,181,106,.1),transparent 30%),
+        #0d121c;
 }
 
-.hero::before {
-  content: "☾";
-  position: absolute;
-  left: 7%;
-  top: 8px;
-  color: #c7ad78;
-  font-size: 90px;
-  opacity: .12;
+.hero:before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border:1px solid rgba(216,181,106,.08);
+    border-radius:50%;
+    left:-200px;
+    top:-300px;
 }
 
-.hero .eyebrow {
-  color: var(--gold);
-  letter-spacing: 4px;
-  font-size: 12px;
+.hero-content{
+    max-width:650px;
+    position:relative;
+    z-index:2;
 }
 
-.hero h1 {
-  font-size: clamp(28px, 5vw, 46px);
-  margin: 18px 0;
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-.hero p {
-  color: var(--muted);
-  line-height: 1.9;
+.hero h1 span{
+    color:var(--gold);
 }
 
-.section-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 30px 0 18px;
+.hero p{
+    color:var(--muted);
+    line-height:2;
+    margin-bottom:25px;
 }
 
-.section-title h2 {
-  font-size: 21px;
-  margin: 0;
+.hero-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.section-title h2::before {
-  content: "✦ ";
-  color: var(--gold);
+.btn{
+    border:0;
+    font-family:inherit;
+    padding:11px 20px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
 }
 
-.search {
-  width: 100%;
-  padding: 13px 15px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  color: var(--text);
-  margin-bottom: 20px;
+.btn-primary{
+    background:var(--blue);
+    color:white;
 }
 
-.library {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 18px;
+.btn-primary:hover{
+    background:#1976d2;
+    transform:translateY(-2px);
 }
 
-.book {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: .2s;
+.btn-secondary{
+    background:#19202d;
+    color:#dce2eb;
+    border:1px solid var(--border);
 }
 
-.book:hover {
-  transform: translateY(-3px);
-  border-color: var(--gold);
+.btn-secondary:hover{
+    background:#202a3a;
 }
 
-.cover {
-  height: 180px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at center, #42404a, #20232d 65%, #151922);
-  border-bottom: 1px solid var(--line);
-  padding: 15px;
+/* ================= MAIN ================= */
+
+.container{
+    max-width:1250px;
+    margin:auto;
+    padding:0 20px 50px;
 }
 
-.cover .symbol {
-  font-size: 48px;
-  color: var(--gold);
+.section{
+    margin-top:35px;
 }
 
-.cover h3 {
-  margin: 8px 0;
-  font-size: 18px;
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
 }
 
-.book-info {
-  padding: 16px;
+.section-title{
+    font-size:23px;
+    font-weight:800;
 }
 
-.book-info p {
-  color: var(--muted);
-  font-size: 13px;
+.section-title small{
+    color:var(--muted);
+    font-size:13px;
+    font-weight:400;
+    margin-right:10px;
 }
 
-.progress {
-  height: 5px;
-  background: #303643;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 12px 0;
+/* ================= CATEGORIES ================= */
+
+.categories{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:5px;
 }
 
-.progress div {
-  height: 100%;
-  background: var(--gold);
+.categories::-webkit-scrollbar{
+    height:4px;
 }
 
-.book-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+.categories button{
+    white-space:nowrap;
+    padding:9px 17px;
+    background:#101620;
+    border:1px solid var(--border);
+    color:#aeb8c9;
+    border-radius:20px;
+    font-family:inherit;
+    cursor:pointer;
 }
 
-.book-actions button {
-  flex: 1;
-  font-size: 13px;
+.categories button:hover,
+.categories button.active{
+    background:rgba(33,150,243,.15);
+    border-color:rgba(33,150,243,.4);
+    color:#fff;
 }
 
-.empty {
-  grid-column: 1/-1;
-  text-align: center;
-  padding: 35px;
-  color: var(--muted);
-  border: 1px dashed var(--line);
-  border-radius: 12px;
+/* ================= BOOK GRID ================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
 }
 
-.hidden {
-  display: none !important;
+.book{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.25s;
+    position:relative;
 }
 
-/* Reader */
-
-#reader {
-  padding: 22px 0 60px;
+.book:hover{
+    transform:translateY(-5px);
+    border-color:rgba(33,150,243,.35);
+    box-shadow:0 12px 35px rgba(0,0,0,.25);
 }
 
-.reader-toolbar {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 24px;
+.cover{
+    height:270px;
+    position:relative;
+    overflow:hidden;
+    background:#151b25;
 }
 
-.reader-toolbar select {
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 10px;
-  max-width: 100%;
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.35s;
 }
 
-.reader-settings {
-  display: flex;
-  gap: 8px;
+.book:hover .cover img{
+    transform:scale(1.04);
 }
 
-.reader-settings button {
-  width: 42px;
-  height: 40px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  color: var(--gold);
-  border-radius: 8px;
+.book-status{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    padding:4px 9px;
+    border-radius:6px;
+    font-size:11px;
+    color:#ddd;
 }
 
-.reader-paper {
-  max-width: 780px;
-  margin: auto;
-  padding: clamp(20px, 5vw, 55px);
-  background: #191c23;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+.book-info{
+    padding:13px;
 }
 
-.chapter-label {
-  color: var(--gold);
-  text-align: center;
-  font-size: 13px;
+.book-title{
+    font-weight:700;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-#chapterTitle {
-  text-align: center;
-  font-size: 27px;
-  margin: 20px 0 35px;
-  line-height: 1.7;
+.author{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:4px;
 }
 
-#chapterText {
-  font-size: var(--reader-size);
-  line-height: 2.15;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  color: #e0ddd7;
+.tags{
+    display:flex;
+    gap:5px;
+    margin-top:10px;
+    flex-wrap:wrap;
 }
 
-.chapter-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 35px;
+.tag{
+    background:#19212e;
+    color:#9da8ba;
+    font-size:10px;
+    padding:3px 7px;
+    border-radius:5px;
 }
 
-.chapter-nav button {
-  flex: 1;
+.favorite{
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:rgba(0,0,0,.65);
+    border:0;
+    color:white;
+    cursor:pointer;
+    z-index:3;
+    font-size:16px;
 }
 
-footer {
-  margin-top: 55px;
-  border-top: 1px solid var(--line);
-  padding: 25px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
+.favorite.active{
+    color:#ef5350;
 }
 
-/* Modal */
+/* ================= DETAILS ================= */
 
-dialog {
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--gold);
-  border-radius: 14px;
-  width: min(500px, 92%);
-  padding: 25px;
+.overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(7px);
+    z-index:2000;
+    overflow-y:auto;
+    padding:30px 15px;
 }
 
-dialog::backdrop {
-  background: #000b;
-  backdrop-filter: blur(5px);
+.modal{
+    max-width:950px;
+    margin:auto;
+    background:#0d131d;
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,.5);
 }
 
-dialog h2 {
-  margin-top: 0;
-  color: var(--gold);
+.close{
+    position:absolute;
+    top:15px;
+    left:15px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:rgba(0,0,0,.6);
+    color:white;
+    cursor:pointer;
+    z-index:5;
+    font-size:18px;
 }
 
-.field {
-  display: grid;
-  gap: 8px;
-  margin: 16px 0;
+.details{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:30px;
+    padding:35px;
+    position:relative;
 }
 
-.field label {
-  font-size: 13px;
-  color: var(--muted);
+.details-cover{
+    width:100%;
+    height:370px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
-.field input,
-.field textarea,
-.field select {
-  width: 100%;
-  padding: 12px;
-  color: var(--text);
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+.details h2{
+    font-size:30px;
+    margin-bottom:6px;
 }
 
-.field textarea {
-  min-height: 140px;
-  resize: vertical;
+.details .author-big{
+    color:var(--gold);
+    margin-bottom:18px;
 }
 
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  margin-top: 20px;
+.description{
+    color:#aeb7c6;
+    line-height:2;
+    margin:20px 0;
 }
 
-@media (max-width: 600px) {
-  header {
-    padding: 0 4%;
-  }
+.info-list{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:20px;
+}
 
-  .logo {
-    font-size: 15px;
-  }
+.info-box{
+    background:#121a26;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px;
+}
 
-  .hero {
-    padding: 30px 15px;
-  }
+.info-box small{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+}
 
-  .library {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
+.info-box strong{
+    font-size:13px;
+}
 
-  .cover {
-    height: 145px;
-  }
+/* ================= EMPTY ================= */
 
-  .cover .symbol {
-    font-size: 36px;
-  }
+.empty{
+    text-align:center;
+    padding:70px 20px;
+    color:var(--muted);
+    display:none;
+}
 
-  .book-info {
-    padding: 11px;
-  }
+.empty-icon{
+    font-size:45px;
+    margin-bottom:10px;
+}
 
-  .book-actions {
-    flex-direction: column;
-  }
+/* ================= FOOTER ================= */
 
-  .reader-toolbar {
-    align-items: stretch;
-  }
+footer{
+    border-top:1px solid var(--border);
+    margin-top:40px;
+    padding:30px 20px;
+    text-align:center;
+    color:#667184;
+    font-size:12px;
+}
 
-  #chapterTitle {
-    font-size: 23px;
-  }
+.footer-logo{
+    color:var(--gold);
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+    .grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .search{
+        margin-right:auto;
+    }
+}
+
+@media(max-width:750px){
+    .grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:12px;
+    }
+
+    .cover{
+        height:220px;
+    }
+
+    .hero{
+        padding:35px 25px;
+        margin-top:20px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .details{
+        grid-template-columns:1fr;
+        padding:25px;
+    }
+
+    .details-cover{
+        width:190px;
+        height:270px;
+        margin:auto;
+    }
+}
+
+@media(max-width:500px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .cover{
+        height:250px;
+    }
+
+    .search{
+        width:150px;
+    }
+
+    .hero{
+        border-radius:15px;
+    }
+
+    .details h2{
+        font-size:24px;
+    }
 }
 </style>
 </head>
@@ -442,439 +565,743 @@ dialog h2 {
 <body>
 
 <header>
-  <div class="logo">
-    <span class="logo-symbol">☾</span>
-    <span>THE TAROT CLUB</span>
-  </div>
-  <button class="header-btn" id="addTop">＋ رواية</button>
+    <div class="nav">
+
+        <div class="logo" onclick="showHome()">
+            ☾ Tarot <span>Club</span>
+        </div>
+
+        <div class="nav-links">
+            <button class="active" onclick="filterSection('all',this)">الرئيسية</button>
+            <button onclick="filterSection('all',this)">المكتبة</button>
+            <button onclick="showPopular(this)">الأكثر قراءة</button>
+            <button onclick="showTopRated(this)">الأعلى تقييماً</button>
+            <button onclick="showFavorites(this)">المفضلة</button>
+        </div>
+
+        <div class="search">
+            <input
+                id="search"
+                type="text"
+                placeholder="ابحث عن رواية..."
+                oninput="searchBooks()"
+            >
+        </div>
+
+    </div>
 </header>
 
-<main>
-  <section class="hero" id="hero">
-    <div class="eyebrow">THE FOOL'S GATHERING</div>
-    <h1>فوق الضباب الرمادي</h1>
-    <p>
-      مرحبًا بك أيها الأحمق.<br>
-      اجلس على مقعدك، واختر حكايتك التالية.
-    </p>
-    <button class="btn gold" id="browseBtn">دخول المكتبة ↓</button>
-  </section>
 
-  <section id="librarySection">
-    <div class="section-title">
-      <h2>مكتبة الروايات</h2>
-      <button class="btn gold" id="addBtn">＋ إضافة رواية</button>
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            مرحباً بك في
+            <span>Tarot Club</span>
+        </h1>
+
+        <p>
+            مكتبة روايات رقمية بطابع غامض مستوحى من
+            نادي التاروت والضباب الرمادي.
+            اكتشف عوالم جديدة، احفظ رواياتك المفضلة
+            وتابع قراءتك من حيث توقفت.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="scrollToLibrary()">
+                📚 استكشف المكتبة
+            </button>
+
+            <button class="btn btn-secondary" onclick="showCategories()">
+                🏷️ التصنيفات
+            </button>
+
+            <button class="btn btn-secondary" onclick="showFavorites()">
+                ♥ المفضلة
+            </button>
+        </div>
+
     </div>
 
-    <input
-      id="search"
-      class="search"
-      type="search"
-      placeholder="ابحث عن رواية..."
-      aria-label="البحث عن رواية"
-    >
+</section>
 
-    <div id="library" class="library"></div>
-  </section>
 
-  <section id="reader" class="hidden">
-    <div class="reader-toolbar">
-      <button class="btn" id="backBtn">← المكتبة</button>
+<main class="container">
 
-      <select id="chapterSelect" aria-label="اختيار الفصل"></select>
+    <!-- CATEGORIES -->
 
-      <div class="reader-settings">
-        <button id="fontDown" aria-label="تصغير الخط">A−</button>
-        <button id="fontUp" aria-label="تكبير الخط">A＋</button>
-      </div>
-    </div>
+    <section class="section">
 
-    <article class="reader-paper">
-      <div class="chapter-label" id="chapterLabel"></div>
-      <h2 id="chapterTitle"></h2>
-      <div id="chapterText"></div>
+        <div class="section-head">
+            <div class="section-title">
+                التصنيفات
+                <small>اختر نوع الرواية</small>
+            </div>
+        </div>
 
-      <div class="chapter-nav">
-        <button class="btn" id="prevBtn">الفصل السابق</button>
-        <button class="btn gold" id="nextBtn">الفصل التالي</button>
-      </div>
-    </article>
-  </section>
+        <div class="categories">
+
+            <button class="active" onclick="filterCategory('الكل',this)">
+                الكل
+            </button>
+
+            <button onclick="filterCategory('فانتازيا',this)">
+                فانتازيا
+            </button>
+
+            <button onclick="filterCategory('فانتازيا مظلمة',this)">
+                فانتازيا مظلمة
+            </button>
+
+            <button onclick="filterCategory('غموض',this)">
+                غموض
+            </button>
+
+            <button onclick="filterCategory('أكشن',this)">
+                أكشن
+            </button>
+
+            <button onclick="filterCategory('مغامرة',this)">
+                مغامرة
+            </button>
+
+            <button onclick="filterCategory('دراما',this)">
+                دراما
+            </button>
+
+            <button onclick="filterCategory('خيال علمي',this)">
+                خيال علمي
+            </button>
+
+            <button onclick="filterCategory('رعب',this)">
+                رعب
+            </button>
+
+            <button onclick="filterCategory('شريحة من الحياة',this)">
+                شريحة من الحياة
+            </button>
+
+            <button onclick="filterCategory('خارق للطبيعة',this)">
+                خارق للطبيعة
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOOKS -->
+
+    <section class="section" id="library">
+
+        <div class="section-head">
+
+            <div class="section-title">
+                المكتبة
+                <small id="count"></small>
+            </div>
+
+            <button class="btn btn-secondary" onclick="resetLibrary()">
+                عرض الكل
+            </button>
+
+        </div>
+
+        <div class="grid" id="booksGrid"></div>
+
+        <div class="empty" id="empty">
+
+            <div class="empty-icon">☾</div>
+
+            <h3>لم نجد أي رواية</h3>
+
+            <p>جرّب البحث باسم آخر أو اختر تصنيفاً مختلفاً.</p>
+
+        </div>
+
+    </section>
+
 </main>
 
+
+<!-- DETAILS MODAL -->
+
+<div class="overlay" id="detailsOverlay">
+
+    <div class="modal">
+
+        <button class="close" onclick="closeDetails()">×</button>
+
+        <div class="details" id="details"></div>
+
+    </div>
+
+</div>
+
+
 <footer>
-  SEQUENCE UNKNOWN · THE GREY FOG AWAITS
+
+    <div class="footer-logo">☾ Tarot Club</div>
+
+    <p>
+        مكتبة روايات تجريبية — تصميم مستوحى من عالم الضباب الرمادي.
+    </p>
+
 </footer>
 
-<dialog id="bookDialog">
-  <form id="bookForm">
-    <h2>إضافة رواية إلى المكتبة</h2>
-
-    <div class="field">
-      <label for="bookName">اسم الرواية</label>
-      <input id="bookName" required maxlength="120"
-        placeholder="اسم الرواية">
-    </div>
-
-    <div class="field">
-      <label for="bookAuthor">اسم الكاتب</label>
-      <input id="bookAuthor" maxlength="120"
-        placeholder="اسم الكاتب">
-    </div>
-
-    <div class="field">
-      <label for="bookDesc">وصف الرواية</label>
-      <textarea id="bookDesc" maxlength="1000"
-        placeholder="اكتب وصفًا قصيرًا..."></textarea>
-    </div>
-
-    <div class="field">
-      <label for="bookSymbol">رمز الغلاف</label>
-      <select id="bookSymbol">
-        <option value="☾">☾ القمر</option>
-        <option value="♠">♠ البستوني</option>
-        <option value="✦">✦ النجمة</option>
-        <option value="☼">☼ الشمس</option>
-        <option value="⚜">⚜ الرمز الملكي</option>
-        <option value="𖤐">𖤐 النجمة الغامضة</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="bookChapters">الفصول (كل فصل يبدأ بسطر عنوان)</label>
-      <textarea id="bookChapters" required
-        placeholder="الفصل الأول: البداية
-اكتب نص الفصل هنا...
-
-الفصل الثاني: المجهول
-اكتب نص الفصل هنا..."></textarea>
-    </div>
-
-    <div class="modal-actions">
-      <button type="button" class="btn" id="cancelBtn">إلغاء</button>
-      <button type="submit" class="btn gold">إضافة للمكتبة</button>
-    </div>
-  </form>
-</dialog>
 
 <script>
-const $ = id => document.getElementById(id);
 
-const STORAGE_KEY = "tarot-club-library-v1";
+/* =========================================================
+   DATABASE
+========================================================= */
 
-const sampleBook = {
-  id: "sample-lotm",
-  name: "لورد الغوامض",
-  author: "Cuttlefish That Loves Diving",
-  description: "رحلة غامضة في عالم البخار والسحر والطقوس.",
-  symbol: "☾",
-  chapters: [
-    {
-      title: "الفصل الأول: الغريب",
-      text: "هذه مساحة تجريبية للقراءة.\n\nأضف نصوص رواياتك وفصولك الخاصة من خلال زر إضافة رواية.\n\nيمكنك تغيير حجم الخط والتنقل بين الفصول، وسيحفظ الموقع تقدمك تلقائيًا."
-    },
-    {
-      title: "الفصل الثاني: بداية الرحلة",
-      text: "هنا يبدأ الفصل الثاني.\n\nاستبدل هذا النص بنص الفصل الذي تريد قراءته."
+const books = [
+
+{
+    id:"lotm",
+    title:"Lord of the Mysteries",
+    arabic:"لورد الغوامض",
+    author:"Cuttlefish That Loves Diving",
+    category:["غموض","فانتازيا","رعب"],
+    status:"مكتملة",
+    rating:9.4,
+    views:980000,
+    cover:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700",
+    description:
+    "يستيقظ كلاين مورتي في عالم غريب مليء بالأسرار والآثار الغامضة والقدرات الخارقة. وبينما يحاول فهم هذا العالم، يجد نفسه أمام شبكة هائلة من المنظمات والأسرار القديمة.",
+    chapters:1430
+},
+
+{
+    id:"shadow-slave",
+    title:"Shadow Slave",
+    arabic:"عبد الظل",
+    author:"Guiltythree",
+    category:["فانتازيا مظلمة","أكشن","مغامرة"],
+    status:"مستمرة",
+    rating:9.2,
+    views:850000,
+    cover:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=700",
+    description:
+    "عالم خطير يواجه فيه البشر كوابيس غامضة. يجد صني نفسه يمتلك قدرة غير عادية مرتبطة بالظلال، وعليه أن يتعلم كيف يعيش في عالم لا يرحم.",
+    chapters:3000
+},
+
+{
+    id:"orv",
+    title:"Omniscient Reader's Viewpoint",
+    arabic:"وجهة نظر القارئ الكلي العلم",
+    author:"Sing N Song",
+    category:["فانتازيا","أكشن","دراما"],
+    status:"مكتملة",
+    rating:9.5,
+    views:760000,
+    cover:"https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?w=700",
+    description:
+    "كان كيم دوكجا الشخص الوحيد الذي قرأ رواية طويلة حتى نهايتها. وفجأة يتحول العالم الحقيقي إلى عالم الرواية التي يعرف أحداثها بالكامل.",
+    chapters:551
+},
+
+{
+    id:"86",
+    title:"86 -Eighty Six-",
+    arabic:"86 — إيتي سيكس",
+    author:"Asato Asato",
+    category:["خيال علمي","أكشن","دراما"],
+    status:"مستمرة",
+    rating:9.0,
+    views:640000,
+    cover:"https://images.unsplash.com/photo-1534791547706-7c9f0a1a5f2c?w=700",
+    description:
+    "تدور الأحداث في عالم تخوض فيه إمبراطورية مجاورة حرباً باستخدام وحدات قتالية غير مأهولة ظاهرياً. لكن الحقيقة أكثر قسوة؛ فهناك مجموعة من الشباب تُجبر على القتال في الخطوط الأمامية بينما يعيش باقي المجتمع بعيداً عن الحرب.",
+    chapters:0
+},
+
+{
+    id:"mushoku",
+    title:"Mushoku Tensei",
+    arabic:"موشوكو تينسي",
+    author:"Rifujin na Magonote",
+    category:["فانتازيا","مغامرة","دراما"],
+    status:"مكتملة",
+    rating:8.9,
+    views:590000,
+    cover:"https://images.unsplash.com/photo-1534447677768-be436bb09401?w=700",
+    description:
+    "بعد حياة سابقة مليئة بالأخطاء، يحصل رجل على فرصة جديدة في عالم سحري. هذه المرة يحاول أن يعيش حياته بطريقة مختلفة ويتعلم من أخطائه السابقة.",
+    chapters:286
+},
+
+{
+    id:"call-night",
+    title:"Call of the Night",
+    arabic:"نداء الليل",
+    author:"Kotoyama",
+    category:["شريحة من الحياة","كوميديا","خارق للطبيعة"],
+    status:"مكتملة",
+    rating:8.7,
+    views:420000,
+    cover:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=700",
+    description:
+    "يبدأ فتى يشعر بالملل من حياته المدرسية بالخروج ليلاً. خلال إحدى جولاته يلتقي بفتاة غامضة تقوده إلى عالم مختلف تماماً.",
+    chapters:200
+},
+
+{
+    id:"clannad",
+    title:"Clannad",
+    arabic:"كلاناد",
+    author:"Key",
+    category:["دراما","شريحة من الحياة","مدرسي"],
+    status:"مكتملة",
+    rating:9.1,
+    views:370000,
+    cover:"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=700",
+    description:
+    "قصة تركز على العلاقات الإنسانية والحياة اليومية لشاب يلتقي بمجموعة من الشخصيات التي ستغير نظرته إلى حياته ومستقبله.",
+    chapters:100
+},
+
+{
+    id:"reverend",
+    title:"Reverend Insanity",
+    arabic:"الحكيم الشيطاني",
+    author:"Gu Zhen Ren",
+    category:["فانتازيا مظلمة","أكشن","غموض"],
+    status:"متوقفة",
+    rating:9.3,
+    views:530000,
+    cover:"https://images.unsplash.com/photo-1531058020387-3be344556be6?w=700",
+    description:
+    "في عالم تحكمه قوى غامضة وصراعات لا تنتهي، يسعى رجل يمتلك خبرة هائلة إلى استعادة طريقه نحو القوة.",
+    chapters:2334
+},
+
+{
+    id:"deep-sea",
+    title:"Deep Sea Embers",
+    arabic:"جمرات البحر العميق",
+    author:"Cuttlefish That Loves Diving",
+    category:["غموض","فانتازيا","رعب"],
+    status:"مكتملة",
+    rating:8.8,
+    views:310000,
+    cover:"https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=700",
+    description:
+    "يستيقظ رجل على متن سفينة غامضة وسط بحر لا يعرف حدوده، ويجد نفسه في عالم مليء بالأسرار والحضارات المفقودة.",
+    chapters:1200
+},
+
+{
+    id:"mother-of-learning",
+    title:"Mother of Learning",
+    arabic:"أم التعلم",
+    author:"Domagoj Kurmaic",
+    category:["فانتازيا","غموض","مغامرة"],
+    status:"مكتملة",
+    rating:9.0,
+    views:290000,
+    cover:"https://images.unsplash.com/photo-1500534623283-312aade485b7?w=700",
+    description:
+    "يجد طالب سحر نفسه عالقاً في حلقة زمنية متكررة، مما يمنحه فرصة لفهم أسرار الأكاديمية والأحداث التي تؤدي إلى الكارثة.",
+    chapters:108
+}
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentBooks = [...books];
+let favorites = JSON.parse(localStorage.getItem("tarotFavorites") || "[]");
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(list){
+
+    const grid = document.getElementById("booksGrid");
+    const empty = document.getElementById("empty");
+
+    grid.innerHTML="";
+
+    document.getElementById("count").textContent =
+        `(${list.length} رواية)`;
+
+    if(!list.length){
+        empty.style.display="block";
+        return;
     }
-  ],
-  progress: 0
+
+    empty.style.display="none";
+
+    list.forEach(book=>{
+
+        const isFav = favorites.includes(book.id);
+
+        const div=document.createElement("div");
+
+        div.className="book";
+
+        div.innerHTML=`
+
+            <button
+                class="favorite ${isFav ? "active":""}"
+                onclick="toggleFavorite(event,'${book.id}')">
+                ${isFav ? "♥":"♡"}
+            </button>
+
+            <div class="cover">
+
+                <img
+                    src="${book.cover}"
+                    alt="${book.title}"
+                    loading="lazy"
+                >
+
+                <div class="book-status">
+                    ${book.status}
+                </div>
+
+            </div>
+
+            <div class="book-info">
+
+                <div class="book-title">
+                    ${book.arabic}
+                </div>
+
+                <div class="author">
+                    ${book.author}
+                </div>
+
+                <div class="tags">
+
+                    ${book.category.slice(0,2).map(
+                        c=>`<span class="tag">${c}</span>`
+                    ).join("")}
+
+                </div>
+
+            </div>
+        `;
+
+        div.onclick=()=>openDetails(book.id);
+
+        grid.appendChild(div);
+
+    });
+
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+function openDetails(id){
+
+    const book=books.find(x=>x.id===id);
+
+    if(!book)return;
+
+    const chaptersText =
+        book.chapters > 0
+        ? book.chapters + " فصل"
+        : "غير مضافة";
+
+    document.getElementById("details").innerHTML=`
+
+        <img
+            class="details-cover"
+            src="${book.cover}"
+            alt="${book.title}"
+        >
+
+        <div>
+
+            <h2>${book.arabic}</h2>
+
+            <div class="author-big">
+                ${book.title}
+            </div>
+
+            <div class="info-list">
+
+                <div class="info-box">
+                    <small>المؤلف</small>
+                    <strong>${book.author}</strong>
+                </div>
+
+                <div class="info-box">
+                    <small>الحالة</small>
+                    <strong>${book.status}</strong>
+                </div>
+
+                <div class="info-box">
+                    <small>التقييم</small>
+                    <strong>★ ${book.rating}</strong>
+                </div>
+
+                <div class="info-box">
+                    <small>الفصول</small>
+                    <strong>${chaptersText}</strong>
+                </div>
+
+            </div>
+
+            <div class="tags">
+
+                ${book.category.map(
+                    c=>`<span class="tag">${c}</span>`
+                ).join("")}
+
+            </div>
+
+            <p class="description">
+                ${book.description}
+            </p>
+
+            ${
+                book.chapters > 0
+                ?
+                `<button
+                    class="btn btn-primary"
+                    onclick="alert('قسم القراءة جاهز لإضافة الفصول الخاصة بك.')">
+                    📖 بدء القراءة
+                </button>`
+                :
+                `<button
+                    class="btn btn-secondary"
+                    disabled>
+                    📖 الفصول غير متوفرة
+                </button>`
+            }
+
+        </div>
+    `;
+
+    document.getElementById("detailsOverlay").style.display="block";
+
+}
+
+
+function closeDetails(){
+    document.getElementById("detailsOverlay").style.display="none";
+}
+
+document.getElementById("detailsOverlay").onclick=function(e){
+
+    if(e.target===this){
+        closeDetails();
+    }
+
 };
 
-let books = loadBooks();
-let currentBookId = null;
-let currentChapter = 0;
-let fontSize = 20;
 
-function loadBooks() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved !== null) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) return parsed;
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(e,id){
+
+    e.stopPropagation();
+
+    if(favorites.includes(id)){
+        favorites=favorites.filter(x=>x!==id);
+    }else{
+        favorites.push(id);
     }
-  } catch (e) {
-    console.warn("تعذر تحميل المكتبة", e);
-  }
 
-  return [{ ...sampleBook }];
+    localStorage.setItem(
+        "tarotFavorites",
+        JSON.stringify(favorites)
+    );
+
+    render(currentBooks);
 }
 
-function saveBooks() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
-  } catch (e) {
-    alert("تعذر الحفظ. قد تكون مساحة التخزين ممتلئة.");
-  }
-}
 
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
-}
+function showFavorites(button){
 
-function getCurrentBook() {
-  return books.find(book => book.id === currentBookId);
-}
+    if(button){
+        document.querySelectorAll(".nav-links button")
+        .forEach(b=>b.classList.remove("active"));
 
-function renderLibrary() {
-  const query = $("search").value.trim().toLowerCase();
-
-  const filtered = books.filter(book =>
-    book.name.toLowerCase().includes(query) ||
-    (book.author || "").toLowerCase().includes(query)
-  );
-
-  if (!filtered.length) {
-    $("library").innerHTML =
-      '<div class="empty">لا توجد روايات مطابقة لبحثك.</div>';
-    return;
-  }
-
-  $("library").innerHTML = filtered.map(book => {
-    const progress = book.chapters.length
-      ? Math.round((book.progress || 0) / book.chapters.length * 100)
-      : 0;
-
-    return `
-      <article class="book">
-        <div class="cover">
-          <div>
-            <div class="symbol">${escapeHTML(book.symbol || "☾")}</div>
-            <h3>${escapeHTML(book.name)}</h3>
-          </div>
-        </div>
-
-        <div class="book-info">
-          <strong>${escapeHTML(book.name)}</strong>
-          <p>${escapeHTML(book.author || "كاتب مجهول")}</p>
-          <p>${book.chapters.length} فصل</p>
-
-          <div class="progress">
-            <div style="width:${progress}%"></div>
-          </div>
-
-          <div class="book-actions">
-            <button class="btn gold" data-open="${escapeHTML(book.id)}">
-              ${progress ? "متابعة القراءة" : "ابدأ القراءة"}
-            </button>
-            <button class="btn" data-delete="${escapeHTML(book.id)}">
-              حذف
-            </button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-
-  $("library").querySelectorAll("[data-open]").forEach(button => {
-    button.addEventListener("click", () => {
-      openBook(button.dataset.open);
-    });
-  });
-
-  $("library").querySelectorAll("[data-delete]").forEach(button => {
-    button.addEventListener("click", () => {
-      deleteBook(button.dataset.delete);
-    });
-  });
-}
-
-function openBook(id) {
-  const book = books.find(item => item.id === id);
-  if (!book || !book.chapters.length) return;
-
-  currentBookId = id;
-  currentChapter = Math.min(
-    book.progress || 0,
-    book.chapters.length - 1
-  );
-
-  $("hero").classList.add("hidden");
-  $("librarySection").classList.add("hidden");
-  $("reader").classList.remove("hidden");
-
-  renderChapter();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function renderChapter() {
-  const book = getCurrentBook();
-  if (!book) return;
-
-  const chapter = book.chapters[currentChapter];
-  if (!chapter) return;
-
-  $("chapterLabel").textContent =
-    book.name + " · الفصل " + (currentChapter + 1);
-
-  $("chapterTitle").textContent = chapter.title;
-  $("chapterText").textContent = chapter.text;
-
-  $("chapterSelect").innerHTML = book.chapters.map((ch, i) =>
-    `<option value="${i}" ${i === currentChapter ? "selected" : ""}>
-      ${escapeHTML(ch.title)}
-    </option>`
-  ).join("");
-
-  $("prevBtn").disabled = currentChapter === 0;
-  $("nextBtn").disabled =
-    currentChapter === book.chapters.length - 1;
-
-  $("prevBtn").style.opacity =
-    currentChapter === 0 ? ".4" : "1";
-
-  $("nextBtn").style.opacity =
-    currentChapter === book.chapters.length - 1 ? ".4" : "1";
-
-  book.progress = currentChapter;
-  saveBooks();
-}
-
-function goToChapter(index) {
-  const book = getCurrentBook();
-  if (!book) return;
-
-  if (index < 0 || index >= book.chapters.length) return;
-
-  currentChapter = index;
-  renderChapter();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function backToLibrary() {
-  $("reader").classList.add("hidden");
-  $("hero").classList.remove("hidden");
-  $("librarySection").classList.remove("hidden");
-
-  currentBookId = null;
-  renderLibrary();
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function deleteBook(id) {
-  const book = books.find(item => item.id === id);
-  if (!book) return;
-
-  if (!confirm(`هل تريد حذف رواية "${book.name}"؟`)) return;
-
-  books = books.filter(item => item.id !== id);
-  saveBooks();
-  renderLibrary();
-}
-
-function openAddDialog() {
-  $("bookForm").reset();
-  $("bookDialog").showModal();
-}
-
-function parseChapters(raw) {
-  // كل سطر يبدأ بكلمة "الفصل" يُعد بداية فصل جديد.
-  const lines = raw.split(/\r?\n/);
-  const chapters = [];
-  let title = "";
-  let text = [];
-
-  for (const line of lines) {
-    if (/^\s*الفصل\s+/.test(line)) {
-      if (title || text.length) {
-        chapters.push({
-          title: title || `الفصل ${chapters.length + 1}`,
-          text: text.join("\n").trim()
-        });
-      }
-
-      title = line.trim();
-      text = [];
-    } else {
-      text.push(line);
+        button.classList.add("active");
     }
-  }
 
-  if (title || text.length) {
-    chapters.push({
-      title: title || `الفصل ${chapters.length + 1}`,
-      text: text.join("\n").trim()
-    });
-  }
+    currentBooks=books.filter(
+        b=>favorites.includes(b.id)
+    );
 
-  return chapters.filter(chapter =>
-    chapter.title || chapter.text
-  );
+    render(currentBooks);
+
+    scrollToLibrary();
 }
 
-$("addBtn").addEventListener("click", openAddDialog);
-$("addTop").addEventListener("click", openAddDialog);
 
-$("cancelBtn").addEventListener("click", () => {
-  $("bookDialog").close();
-});
+/* =========================================================
+   SEARCH
+========================================================= */
 
-$("bookForm").addEventListener("submit", event => {
-  event.preventDefault();
+function searchBooks(){
 
-  const name = $("bookName").value.trim();
-  const chapters = parseChapters($("bookChapters").value);
+    const query=
+        document.getElementById("search")
+        .value
+        .trim()
+        .toLowerCase();
 
-  if (!name || !chapters.length) {
-    alert("أدخل اسم الرواية وفصلًا واحدًا على الأقل.");
-    return;
-  }
+    currentBooks=books.filter(book=>{
 
-  books.unshift({
-    id: crypto.randomUUID
-      ? crypto.randomUUID()
-      : String(Date.now()),
-    name,
-    author: $("bookAuthor").value.trim(),
-    description: $("bookDesc").value.trim(),
-    symbol: $("bookSymbol").value,
-    chapters,
-    progress: 0
-  });
+        return (
+            book.title.toLowerCase().includes(query) ||
+            book.arabic.toLowerCase().includes(query) ||
+            book.author.toLowerCase().includes(query) ||
+            book.category.some(
+                c=>c.toLowerCase().includes(query)
+            )
+        );
 
-  saveBooks();
-  renderLibrary();
-  $("bookDialog").close();
-});
+    });
 
-$("search").addEventListener("input", renderLibrary);
+    render(currentBooks);
+}
 
-$("browseBtn").addEventListener("click", () => {
-  $("librarySection").scrollIntoView({ behavior: "smooth" });
-});
 
-$("backBtn").addEventListener("click", backToLibrary);
+/* =========================================================
+   CATEGORIES
+========================================================= */
 
-$("prevBtn").addEventListener("click", () => {
-  goToChapter(currentChapter - 1);
-});
+function filterCategory(category,button){
 
-$("nextBtn").addEventListener("click", () => {
-  goToChapter(currentChapter + 1);
-});
+    document.querySelectorAll(".categories button")
+    .forEach(b=>b.classList.remove("active"));
 
-$("chapterSelect").addEventListener("change", event => {
-  goToChapter(Number(event.target.value));
-});
+    button.classList.add("active");
 
-$("fontUp").addEventListener("click", () => {
-  fontSize = Math.min(fontSize + 2, 36);
-  $("chapterText").style.fontSize = fontSize + "px";
-});
+    if(category==="الكل"){
+        currentBooks=[...books];
+    }else{
+        currentBooks=books.filter(
+            b=>b.category.includes(category)
+        );
+    }
 
-$("fontDown").addEventListener("click", () => {
-  fontSize = Math.max(fontSize - 2, 12);
-  $("chapterText").style.fontSize = fontSize + "px";
-});
+    render(currentBooks);
 
-renderLibrary();
+    scrollToLibrary();
+}
+
+
+function showCategories(){
+
+    document.querySelector(".categories")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   POPULAR / RATED
+========================================================= */
+
+function showPopular(button){
+
+    currentBooks=[...books]
+        .sort((a,b)=>b.views-a.views);
+
+    render(currentBooks);
+
+    scrollToLibrary();
+
+}
+
+
+function showTopRated(button){
+
+    currentBooks=[...books]
+        .sort((a,b)=>b.rating-a.rating);
+
+    render(currentBooks);
+
+    scrollToLibrary();
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function showHome(){
+
+    currentBooks=[...books];
+
+    document.getElementById("search").value="";
+
+    render(currentBooks);
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function resetLibrary(){
+
+    currentBooks=[...books];
+
+    document.getElementById("search").value="";
+
+    render(currentBooks);
+
+}
+
+
+function filterSection(type,button){
+
+    document.querySelectorAll(".nav-links button")
+    .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    currentBooks=[...books];
+
+    render(currentBooks);
+
+    scrollToLibrary();
+
+}
+
+
+function scrollToLibrary(){
+
+    document.getElementById("library")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+render(books);
+
 </script>
 
 </body>
