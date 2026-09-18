@@ -4,17 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tarot Club — نادي التاروت</title>
+<title>Tarot Club | نادي التاروت</title>
 
 <style>
+
 /* =========================================================
-   TAROT CLUB — GREY FOG / GIANT PALACE
-   ========================================================= */
+   RESET
+========================================================= */
 
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -22,138 +23,79 @@ html{
 }
 
 body{
+    min-height:100vh;
+    background:#07090d;
+    color:#d8dde2;
     font-family:
         "Segoe UI",
         Tahoma,
         Arial,
         sans-serif;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 15%,
-            rgba(92,108,124,.12),
-            transparent 42%
-        ),
-        linear-gradient(
-            180deg,
-            #070a0f 0%,
-            #0a0e14 45%,
-            #080b10 100%
-        );
-
-    color:#d8dde2;
-    min-height:100vh;
     overflow-x:hidden;
 }
 
-/* ---------------------------------------------------------
-   FOG
---------------------------------------------------------- */
+button,
+input{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
 body::before{
     content:"";
     position:fixed;
-    inset:-20%;
+    inset:0;
     pointer-events:none;
-    z-index:-3;
+    z-index:-10;
 
     background:
         radial-gradient(
-            ellipse at 20% 40%,
-            rgba(142,151,161,.08),
-            transparent 28%
+            ellipse at 50% 20%,
+            rgba(120,128,136,.10),
+            transparent 45%
         ),
         radial-gradient(
-            ellipse at 80% 60%,
-            rgba(105,116,128,.07),
-            transparent 30%
+            ellipse at 20% 80%,
+            rgba(90,98,106,.08),
+            transparent 35%
         ),
-        radial-gradient(
-            ellipse at 50% 85%,
-            rgba(160,168,177,.08),
-            transparent 25%
-        );
-
-    filter:blur(55px);
-    animation:fogMove 22s ease-in-out infinite alternate;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    left:-10%;
-    right:-10%;
-    bottom:-90px;
-    height:260px;
-    pointer-events:none;
-    z-index:50;
-
-    background:
         linear-gradient(
-            to top,
-            rgba(174,181,188,.08),
-            rgba(120,130,140,.035),
-            transparent
+            180deg,
+            #07090d,
+            #0a0d12
         );
-
-    filter:blur(28px);
 }
 
-@keyframes fogMove{
-    from{
-        transform:translate3d(-3%,0,0) scale(1);
-    }
-    to{
-        transform:translate3d(3%,2%,0) scale(1.06);
-    }
-}
 
-/* ---------------------------------------------------------
+/* =========================================================
    HEADER
---------------------------------------------------------- */
+========================================================= */
 
 header{
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 
-    height:72px;
+    min-height:70px;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    padding:0 5%;
+    gap:20px;
+
+    padding:10px 5%;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(6,9,14,.96),
-            rgba(8,11,16,.91)
-        );
+        rgba(6,8,12,.94);
 
-    border-bottom:1px solid rgba(148,158,168,.12);
+    border-bottom:
+        1px solid rgba(180,185,190,.10);
 
-    backdrop-filter:blur(16px);
-}
-
-/* subtle mystical line */
-
-header::after{
-    content:"";
-    position:absolute;
-    bottom:-1px;
-    left:20%;
-    right:20%;
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(123,143,163,.35),
-            transparent
-        );
+    backdrop-filter:blur(14px);
 }
 
 .logo{
@@ -161,137 +103,151 @@ header::after{
     align-items:center;
     gap:12px;
 
-    color:#e3e7ea;
+    color:#e1e5e8;
     text-decoration:none;
 
-    font-size:22px;
-    font-weight:700;
-    letter-spacing:.5px;
+    white-space:nowrap;
 }
 
 .logo-symbol{
-    width:39px;
-    height:39px;
+    width:40px;
+    height:40px;
+
+    border:
+        1px solid rgba(180,187,194,.35);
+
+    border-radius:50%;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border:1px solid rgba(144,160,177,.45);
-    border-radius:50%;
-
-    color:#aab8c5;
-    font-size:20px;
-
-    box-shadow:
-        0 0 18px rgba(100,120,140,.12),
-        inset 0 0 12px rgba(120,140,160,.05);
+    color:#b9c0c6;
 
     position:relative;
+
+    font-size:20px;
 }
 
 .logo-symbol::before{
     content:"";
-    position:absolute;
-    inset:5px;
 
-    border:1px solid rgba(160,170,180,.18);
+    position:absolute;
+
+    inset:6px;
+
+    border:
+        1px solid rgba(180,187,194,.18);
+
     border-radius:50%;
+}
+
+.logo-text{
+    font-size:21px;
+    font-weight:600;
+    letter-spacing:.5px;
 }
 
 nav{
     display:flex;
     align-items:center;
-    gap:5px;
+    gap:3px;
 }
 
 nav button{
     border:none;
     background:transparent;
 
-    color:#8f99a3;
+    color:#7f8891;
 
-    padding:10px 14px;
+    padding:10px 13px;
 
-    border-radius:5px;
+    border-radius:4px;
 
     cursor:pointer;
 
-    font-size:14px;
+    font-size:13px;
 
-    transition:
-        color .2s,
-        background .2s,
-        transform .2s;
+    transition:.2s;
 }
 
 nav button:hover{
-    color:#dbe1e6;
-    background:rgba(125,142,158,.08);
+    color:#e0e4e7;
+    background:rgba(160,170,180,.07);
 }
 
 nav button.active{
-    color:#e2e7eb;
-    background:rgba(115,132,149,.10);
+    color:#e1e5e8;
+    background:rgba(150,160,170,.10);
 }
 
-/* ---------------------------------------------------------
+
+/* =========================================================
    SEARCH
---------------------------------------------------------- */
+========================================================= */
 
-.search{
+.search-box{
     position:relative;
-    width:230px;
+    width:220px;
 }
 
-.search input{
+.search-box input{
     width:100%;
     height:39px;
 
-    padding:0 42px 0 14px;
+    padding:
+        0 40px
+        0 13px;
 
-    border:1px solid rgba(135,148,160,.14);
-    border-radius:5px;
+    border:
+        1px solid rgba(160,170,180,.13);
+
+    border-radius:4px;
 
     outline:none;
 
-    background:rgba(16,21,28,.78);
-    color:#e1e5e8;
+    color:#e0e4e7;
 
-    font-size:13px;
+    background:#10141a;
 
-    transition:.25s;
+    font-size:12px;
 }
 
-.search input::placeholder{
-    color:#68727d;
+.search-box input::placeholder{
+    color:#68717a;
 }
 
-.search input:focus{
-    border-color:rgba(137,157,177,.35);
+.search-box input:focus{
+    border-color:
+        rgba(170,180,190,.30);
 
     box-shadow:
-        0 0 20px rgba(83,105,126,.08);
+        0 0 20px rgba(150,160,170,.05);
 }
 
 .search-icon{
     position:absolute;
-    right:14px;
+
+    right:13px;
     top:50%;
 
     transform:translateY(-50%);
 
-    color:#76828e;
+    color:#7c858e;
+
+    font-size:18px;
 }
 
-/* ---------------------------------------------------------
+
+/* =========================================================
    HERO
---------------------------------------------------------- */
+========================================================= */
 
 .hero{
-    min-height:620px;
-
     position:relative;
+
+    min-height:650px;
+
     overflow:hidden;
 
     display:flex;
@@ -300,464 +256,227 @@ nav button.active{
 
     text-align:center;
 
-    isolation:isolate;
+    background:
+        linear-gradient(
+            180deg,
+            #080b10 0%,
+            #0a0e14 60%,
+            #11161c 100%
+        );
+}
+
+
+/* =========================================================
+   DISTANT LIGHT
+========================================================= */
+
+.hero-light{
+    position:absolute;
+
+    width:700px;
+    height:400px;
+
+    left:50%;
+    top:100px;
+
+    transform:translateX(-50%);
 
     background:
         radial-gradient(
-            ellipse at 50% 55%,
-            rgba(70,83,97,.15),
-            transparent 50%
-        ),
-        linear-gradient(
-            180deg,
-            #080b10,
-            #0b1017 65%,
-            #111820
-        );
-}
-
-/* stars / dust */
-
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-
-    opacity:.35;
-
-    background-image:
-        radial-gradient(circle, rgba(220,225,230,.35) 1px, transparent 1px);
-
-    background-size:87px 87px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 72%
+            ellipse,
+            rgba(175,182,188,.09),
+            transparent 65%
         );
 
-    z-index:-4;
+    filter:blur(25px);
+
+    z-index:0;
 }
 
-/* ---------------------------------------------------------
-   GIANT PALACE
---------------------------------------------------------- */
+
+/* =========================================================
+   PALACE
+========================================================= */
 
 .palace{
     position:absolute;
 
     left:50%;
-    bottom:-10px;
+    bottom:30px;
+
+    width:900px;
+    height:510px;
 
     transform:translateX(-50%);
 
-    width:min(1100px,100vw);
-    height:520px;
+    z-index:1;
 
-    z-index:-2;
+    opacity:.82;
 
-    opacity:.72;
+    pointer-events:none;
 }
 
-/* palace base */
+.palace svg{
+    width:100%;
+    height:100%;
 
-.palace .building{
-    position:absolute;
-
-    left:50%;
-    bottom:0;
-
-    transform:translateX(-50%);
-
-    width:610px;
-    height:360px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0b1016,
-            #1a222c 48%,
-            #0a0f15
-        );
-
-    clip-path:polygon(
-        9% 100%,
-        9% 34%,
-        18% 34%,
-        18% 20%,
-        27% 20%,
-        27% 8%,
-        50% 0%,
-        73% 8%,
-        73% 20%,
-        82% 20%,
-        82% 34%,
-        91% 34%,
-        91% 100%
-    );
-
-    box-shadow:
-        0 0 100px rgba(103,119,135,.10);
-}
-
-/* side towers */
-
-.palace .tower{
-    position:absolute;
-    bottom:0;
-
-    width:120px;
-    height:330px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #080d13,
-            #17202a,
-            #080d13
-        );
-}
-
-.palace .tower.left{
-    left:9%;
-}
-
-.palace .tower.right{
-    right:9%;
-}
-
-.palace .tower::before{
-    content:"";
-
-    position:absolute;
-
-    left:-20px;
-    right:-20px;
-    top:-70px;
-
-    height:100px;
-
-    background:#111923;
-
-    clip-path:polygon(
-        50% 0,
-        100% 100%,
-        0 100%
-    );
-}
-
-.palace .tower::after{
-    content:"";
-
-    position:absolute;
-
-    top:55px;
-    left:50%;
-
-    width:25px;
-    height:90px;
-
-    transform:translateX(-50%);
-
-    border-radius:14px 14px 2px 2px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(143,164,184,.35),
-            rgba(77,96,115,.06)
-        );
-
-    box-shadow:
-        0 0 20px rgba(113,139,163,.09);
-}
-
-/* palace windows */
-
-.windows{
-    position:absolute;
-
-    left:50%;
-    top:125px;
-
-    transform:translateX(-50%);
-
-    width:400px;
-    height:190px;
-
-    display:grid;
-
-    grid-template-columns:repeat(7,1fr);
-
-    gap:18px;
-
-    opacity:.55;
-}
-
-.windows span{
     display:block;
-
-    height:65px;
-
-    margin-top:35px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(150,170,188,.25),
-            rgba(75,94,111,.04)
-        );
-
-    clip-path:polygon(
-        50% 0,
-        100% 20%,
-        100% 100%,
-        0 100%,
-        0 20%
-    );
-
-    box-shadow:
-        0 0 16px rgba(120,145,165,.08);
 }
 
-/* central entrance */
 
-.entrance{
+/* =========================================================
+   PALACE FOG
+========================================================= */
+
+.fog{
     position:absolute;
 
-    left:50%;
-    bottom:0;
+    left:-10%;
+    right:-10%;
 
-    transform:translateX(-50%);
+    bottom:-70px;
 
-    width:120px;
-    height:190px;
+    height:250px;
 
-    border-radius:70px 70px 0 0;
+    z-index:3;
 
-    background:
-        radial-gradient(
-            ellipse at center bottom,
-            rgba(145,161,175,.20),
-            rgba(5,8,12,.85) 68%
-        );
-
-    border:
-        1px solid rgba(135,151,166,.16);
-}
-
-/* palace roof */
-
-.roof{
-    position:absolute;
-
-    left:50%;
-    bottom:340px;
-
-    transform:translateX(-50%);
-
-    width:390px;
-    height:180px;
-
-    background:#131b24;
-
-    clip-path:polygon(
-        50% 0,
-        100% 100%,
-        0 100%
-    );
-
-    opacity:.85;
-}
-
-.roof::after{
-    content:"";
-
-    position:absolute;
-
-    left:50%;
-    top:28px;
-
-    transform:translateX(-50%);
-
-    width:110px;
-    height:90px;
-
-    border-radius:60% 60% 0 0;
-
-    background:#0a0e14;
-
-    border:
-        1px solid rgba(145,158,170,.13);
-}
-
-/* palace fog */
-
-.palace-fog{
-    position:absolute;
-
-    left:-15%;
-    right:-15%;
-    bottom:-30px;
-
-    height:170px;
+    pointer-events:none;
 
     background:
         radial-gradient(
             ellipse at 20% 50%,
-            rgba(174,181,188,.16),
-            transparent 35%
-        ),
-        radial-gradient(
-            ellipse at 55% 45%,
-            rgba(153,163,173,.17),
+            rgba(175,180,184,.20),
             transparent 38%
         ),
         radial-gradient(
-            ellipse at 85% 55%,
-            rgba(168,176,184,.14),
-            transparent 35%
+            ellipse at 50% 45%,
+            rgba(185,189,192,.17),
+            transparent 40%
+        ),
+        radial-gradient(
+            ellipse at 80% 55%,
+            rgba(170,176,181,.19),
+            transparent 38%
         );
 
     filter:blur(25px);
 
-    animation:palaceFog 12s ease-in-out infinite alternate;
+    animation:fogMove 12s ease-in-out infinite alternate;
 }
 
-@keyframes palaceFog{
+@keyframes fogMove{
+
     from{
-        transform:translateX(-3%);
+        transform:translateX(-30px);
     }
 
     to{
-        transform:translateX(3%);
+        transform:translateX(30px);
     }
+
 }
 
-/* ---------------------------------------------------------
-   HERO CONTENT
---------------------------------------------------------- */
 
-.hero-content{
-    width:min(850px,90%);
+/* second fog layer */
 
-    position:relative;
-    z-index:5;
+.fog-two{
+    position:absolute;
 
-    margin-top:-30px;
-}
+    left:-20%;
+    right:-20%;
 
-.eyebrow{
-    display:inline-flex;
+    bottom:30px;
 
-    align-items:center;
-    gap:12px;
+    height:110px;
 
-    color:#8d9aa6;
-
-    font-size:12px;
-    letter-spacing:3px;
-
-    margin-bottom:22px;
-}
-
-.eyebrow::before,
-.eyebrow::after{
-    content:"";
-
-    width:55px;
-    height:1px;
+    z-index:4;
 
     background:
         linear-gradient(
-            90deg,
+            180deg,
             transparent,
-            rgba(145,158,171,.35)
-        );
-}
-
-.eyebrow::after{
-    background:
-        linear-gradient(
-            90deg,
-            rgba(145,158,171,.35),
+            rgba(160,166,172,.08),
             transparent
         );
+
+    filter:blur(20px);
+
+    animation:fogMoveTwo 16s ease-in-out infinite alternate;
 }
 
-.hero h1{
-    font-size:
-        clamp(42px,7vw,76px);
+@keyframes fogMoveTwo{
 
-    font-weight:500;
+    from{
+        transform:translateX(40px);
+    }
 
-    letter-spacing:2px;
+    to{
+        transform:translateX(-40px);
+    }
 
-    color:#e4e8eb;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content{
+    position:relative;
+
+    z-index:10;
+
+    width:min(800px,90%);
+
+    margin-top:-25px;
 
     text-shadow:
-        0 4px 35px rgba(0,0,0,.8),
-        0 0 40px rgba(110,130,150,.10);
-
-    margin-bottom:16px;
+        0 3px 20px rgba(0,0,0,.8);
 }
 
-.hero h1 span{
-    color:#a4b1bd;
-}
+.symbol{
+    width:80px;
+    height:80px;
 
-.hero p{
-    max-width:650px;
+    margin:0 auto 20px;
 
-    margin:0 auto 30px;
+    border:
+        1px solid rgba(185,190,195,.25);
 
-    color:#89939d;
-
-    line-height:2;
-
-    font-size:15px;
-}
-
-/* mystical symbol */
-
-.mystic-symbol{
-    width:78px;
-    height:78px;
-
-    margin:0 auto 22px;
-
-    border:1px solid rgba(153,165,177,.25);
     border-radius:50%;
-
-    position:relative;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    color:#9aa8b5;
+    position:relative;
 
-    font-size:26px;
+    color:#c1c7cc;
+
+    font-size:27px;
+
+    background:
+        rgba(8,11,15,.40);
 
     box-shadow:
-        0 0 30px rgba(90,110,130,.10);
+        0 0 35px rgba(150,160,170,.07);
 }
 
-.mystic-symbol::before{
+.symbol::before{
     content:"";
 
     position:absolute;
 
-    width:54px;
-    height:54px;
+    width:55px;
+    height:55px;
 
-    border:1px solid rgba(153,165,177,.15);
+    border:
+        1px solid rgba(190,195,200,.15);
 
     transform:rotate(45deg);
 }
 
-.mystic-symbol::after{
+.symbol::after{
     content:"";
 
     position:absolute;
@@ -766,210 +485,252 @@ nav button.active{
     height:18px;
 
     border:
-        1px solid rgba(153,165,177,.20);
+        1px solid rgba(190,195,200,.20);
 
     transform:rotate(45deg);
 }
 
+.eyebrow{
+    color:#8b949d;
+
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:
+        clamp(42px,7vw,76px);
+
+    font-weight:400;
+
+    color:#e7eaed;
+
+    letter-spacing:2px;
+
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:#aeb8c1;
+}
+
+.hero-description{
+    width:min(650px,100%);
+
+    margin:0 auto 28px;
+
+    color:#929ba4;
+
+    line-height:2;
+
+    font-size:14px;
+}
+
 .hero-buttons{
     display:flex;
+
     justify-content:center;
-    gap:12px;
+
+    gap:10px;
+
     flex-wrap:wrap;
 }
 
 .btn{
-    padding:12px 25px;
-
     border-radius:4px;
+
+    padding:12px 25px;
 
     cursor:pointer;
 
-    font-size:14px;
+    font-size:13px;
 
-    transition:.25s;
+    transition:.2s;
 }
 
 .btn-primary{
-    border:1px solid rgba(148,164,179,.30);
+    border:
+        1px solid rgba(175,185,195,.28);
+
+    color:#e4e8eb;
 
     background:
         linear-gradient(
             135deg,
-            rgba(82,101,120,.45),
-            rgba(38,49,61,.45)
+            rgba(75,84,94,.55),
+            rgba(32,38,45,.75)
         );
-
-    color:#e1e5e8;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.25);
 }
 
 .btn-primary:hover{
     background:
         linear-gradient(
             135deg,
-            rgba(105,125,145,.55),
-            rgba(43,55,68,.55)
+            rgba(100,110,120,.60),
+            rgba(42,49,57,.80)
         );
 
     transform:translateY(-2px);
 }
 
 .btn-secondary{
-    border:1px solid rgba(130,143,156,.16);
+    border:
+        1px solid rgba(150,160,170,.15);
 
-    background:rgba(10,14,19,.65);
+    color:#9da6ae;
 
-    color:#929ca6;
+    background:
+        rgba(8,11,15,.70);
 }
 
 .btn-secondary:hover{
-    color:#dce1e5;
+    color:#e0e4e7;
 
-    border-color:rgba(140,155,170,.30);
-
-    background:rgba(30,38,47,.55);
+    border-color:
+        rgba(170,180,190,.28);
 }
 
-/* ---------------------------------------------------------
+
+/* =========================================================
    MAIN
---------------------------------------------------------- */
+========================================================= */
 
 .container{
-    width:min(1250px,92%);
+    width:min(1200px,92%);
 
     margin:auto;
 }
 
-/* ---------------------------------------------------------
-   SECTIONS
---------------------------------------------------------- */
+
+/* =========================================================
+   SECTION
+========================================================= */
 
 .section{
-    padding:65px 0 20px;
+    padding:60px 0 15px;
 }
 
 .section-header{
     display:flex;
 
+    align-items:flex-end;
     justify-content:space-between;
-    align-items:end;
 
-    gap:20px;
+    margin-bottom:22px;
 
-    margin-bottom:24px;
+    padding-bottom:14px;
 
     border-bottom:
-        1px solid rgba(135,148,160,.10);
-
-    padding-bottom:15px;
+        1px solid rgba(160,170,180,.10);
 }
 
 .section-title{
-    font-size:24px;
+    font-size:23px;
 
     font-weight:500;
 
     color:#dce1e5;
 }
 
-.section-title small{
-    display:block;
+.section-subtitle{
+    color:#606a73;
 
-    margin-top:7px;
+    font-size:10px;
 
-    color:#68737e;
+    letter-spacing:3px;
 
-    font-size:11px;
-
-    letter-spacing:1px;
+    margin-top:6px;
 }
 
 .section-action{
-    background:none;
     border:none;
+    background:none;
 
-    color:#778695;
+    color:#78838d;
 
     cursor:pointer;
 
-    font-size:13px;
+    font-size:12px;
 }
 
 .section-action:hover{
-    color:#b4c0ca;
+    color:#d3d9de;
 }
 
-/* ---------------------------------------------------------
+
+/* =========================================================
    CATEGORIES
---------------------------------------------------------- */
+========================================================= */
 
 .categories{
     display:flex;
-    gap:9px;
+
+    gap:8px;
 
     overflow-x:auto;
 
-    padding-bottom:8px;
+    padding-bottom:5px;
 }
 
 .categories::-webkit-scrollbar{
-    height:4px;
+    height:3px;
 }
 
 .categories::-webkit-scrollbar-thumb{
-    background:#28323c;
+    background:#30373e;
 }
 
 .category{
-    white-space:nowrap;
+    flex-shrink:0;
 
-    padding:9px 16px;
-
-    border:1px solid rgba(134,148,162,.12);
-
-    background:rgba(15,20,27,.7);
-
-    color:#7e8994;
+    border:
+        1px solid rgba(150,160,170,.12);
 
     border-radius:3px;
 
+    background:#0d1116;
+
+    color:#7d8790;
+
+    padding:9px 15px;
+
     cursor:pointer;
+
+    font-size:12px;
 
     transition:.2s;
 }
 
 .category:hover{
-    color:#cfd6dc;
+    color:#d9dee2;
 
-    border-color:rgba(135,153,170,.28);
-
-    background:rgba(31,40,50,.7);
+    border-color:
+        rgba(170,180,190,.25);
 }
 
 .category.active{
-    color:#e0e5e9;
+    color:#e1e5e8;
 
-    border-color:rgba(139,158,177,.30);
+    background:#1a2027;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(73,91,108,.30),
-            rgba(30,40,50,.45)
-        );
+    border-color:
+        rgba(180,190,200,.25);
 }
 
-/* ---------------------------------------------------------
-   BOOK GRID
---------------------------------------------------------- */
 
-.library-info{
-    color:#68737e;
+/* =========================================================
+   LIBRARY
+========================================================= */
 
-    font-size:12px;
+.library-count{
+    color:#606a73;
+
+    font-size:11px;
+
+    margin-top:6px;
 }
 
 .books-grid{
@@ -978,79 +739,55 @@ nav button.active{
     grid-template-columns:
         repeat(
             auto-fill,
-            minmax(185px,1fr)
+            minmax(180px,1fr)
         );
 
-    gap:22px;
+    gap:20px;
 }
 
-/* ---------------------------------------------------------
+
+/* =========================================================
    BOOK CARD
---------------------------------------------------------- */
+========================================================= */
 
 .book-card{
     position:relative;
 
     overflow:hidden;
 
-    border:
-        1px solid rgba(130,145,160,.11);
+    background:#0d1117;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,24,32,.96),
-            rgba(10,14,20,.98)
-        );
+    border:
+        1px solid rgba(145,155,165,.11);
 
     border-radius:4px;
 
     cursor:pointer;
 
     transition:
-        transform .3s,
-        border-color .3s,
-        box-shadow .3s;
-}
-
-.book-card::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    border:
-        1px solid rgba(160,172,184,.035);
-
-    pointer-events:none;
-
-    z-index:2;
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
 }
 
 .book-card:hover{
-    transform:translateY(-6px);
+    transform:translateY(-5px);
 
     border-color:
-        rgba(139,157,174,.28);
+        rgba(170,180,190,.27);
 
     box-shadow:
-        0 18px 45px rgba(0,0,0,.45),
-        0 0 25px rgba(83,103,122,.07);
+        0 18px 45px rgba(0,0,0,.40);
 }
 
 .cover{
-    height:265px;
+    height:260px;
 
     position:relative;
 
     overflow:hidden;
 
-    background:
-        linear-gradient(
-            145deg,
-            #1b252f,
-            #080c11
-        );
+    background:#161b21;
 }
 
 .cover img{
@@ -1059,40 +796,42 @@ nav button.active{
 
     object-fit:cover;
 
-    opacity:.76;
-
     filter:
-        saturate(.45)
+        grayscale(.35)
+        brightness(.72)
         contrast(1.05);
 
-    transition:.4s;
+    transition:.35s;
 }
 
 .book-card:hover .cover img{
-    opacity:.9;
     transform:scale(1.04);
+
+    filter:
+        grayscale(.20)
+        brightness(.82);
 }
 
 .cover::after{
     content:"";
 
     position:absolute;
+
     inset:0;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(5,8,12,.10),
-            rgba(5,8,12,.12) 45%,
-            rgba(5,8,12,.92)
+            transparent 45%,
+            rgba(5,7,10,.90)
         );
 }
 
-.book-symbol{
+.card-symbol{
     position:absolute;
 
-    left:12px;
-    top:12px;
+    left:10px;
+    top:10px;
 
     width:32px;
     height:32px;
@@ -1102,17 +841,16 @@ nav button.active{
     justify-content:center;
 
     border:
-        1px solid rgba(190,198,205,.20);
+        1px solid rgba(200,205,210,.20);
 
     border-radius:50%;
 
-    color:#b2bcc5;
+    color:#c0c6cb;
 
-    background:rgba(5,8,12,.55);
+    background:
+        rgba(5,8,11,.65);
 
-    backdrop-filter:blur(5px);
-
-    z-index:4;
+    z-index:5;
 }
 
 .favorite{
@@ -1121,146 +859,149 @@ nav button.active{
     right:10px;
     top:10px;
 
-    width:34px;
-    height:34px;
+    width:32px;
+    height:32px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
     border:
-        1px solid rgba(180,190,200,.15);
+        1px solid rgba(200,205,210,.16);
 
     border-radius:50%;
 
-    background:rgba(5,8,12,.60);
+    background:
+        rgba(5,8,11,.70);
 
-    color:#7f8b96;
+    color:#87919a;
 
     cursor:pointer;
 
-    z-index:5;
+    z-index:6;
 
-    transition:.2s;
+    font-size:16px;
 }
 
 .favorite:hover{
-    color:#dce2e6;
-    border-color:rgba(180,190,200,.35);
+    color:#e1e5e8;
 }
 
 .favorite.active{
-    color:#d5dde3;
+    color:#dce2e7;
 
-    background:rgba(91,110,128,.30);
+    border-color:
+        rgba(180,190,200,.35);
 
-    border-color:rgba(150,168,184,.35);
+    background:#252c33;
+}
+
+.status{
+    position:absolute;
+
+    left:10px;
+    bottom:10px;
+
+    z-index:5;
+
+    color:#abb3ba;
+
+    background:
+        rgba(5,7,10,.78);
+
+    border:
+        1px solid rgba(170,180,190,.13);
+
+    padding:4px 7px;
+
+    font-size:9px;
 }
 
 .book-info{
-    padding:15px;
+    padding:13px;
 }
 
 .book-title{
     color:#dce1e5;
 
-    font-size:15px;
+    font-size:14px;
 
     font-weight:600;
-
-    margin-bottom:6px;
 
     white-space:nowrap;
 
     overflow:hidden;
 
     text-overflow:ellipsis;
+
+    margin-bottom:6px;
 }
 
 .book-author{
-    color:#707b86;
+    color:#6f7982;
 
-    font-size:11px;
+    font-size:10px;
 
-    margin-bottom:12px;
+    margin-bottom:11px;
 }
 
 .tags{
     display:flex;
 
-    gap:5px;
-
     flex-wrap:wrap;
+
+    gap:5px;
 }
 
 .tag{
-    color:#7f8b96;
-
-    border:
-        1px solid rgba(128,143,157,.11);
-
-    background:rgba(95,110,124,.06);
-
-    padding:4px 7px;
+    color:#7c8790;
 
     font-size:9px;
+
+    padding:4px 6px;
+
+    border:
+        1px solid rgba(150,160,170,.10);
+
+    background:#11161c;
 
     border-radius:2px;
 }
 
-.status{
-    position:absolute;
 
-    bottom:12px;
-    left:12px;
-
-    z-index:5;
-
-    font-size:9px;
-
-    padding:4px 8px;
-
-    background:rgba(6,9,13,.75);
-
-    border:
-        1px solid rgba(140,153,165,.15);
-
-    color:#a1abb4;
-}
-
-/* ---------------------------------------------------------
+/* =========================================================
    EMPTY
---------------------------------------------------------- */
+========================================================= */
 
 .empty{
+    grid-column:1/-1;
+
     text-align:center;
 
     padding:80px 20px;
 
-    color:#68727c;
+    color:#626c75;
 }
 
 .empty-icon{
     font-size:40px;
 
-    margin-bottom:15px;
+    margin-bottom:12px;
 
     opacity:.5;
 }
 
-/* ---------------------------------------------------------
+
+/* =========================================================
    MODAL
---------------------------------------------------------- */
+========================================================= */
 
 .overlay{
     position:fixed;
 
     inset:0;
 
-    background:
-        rgba(2,4,7,.84);
-
-    backdrop-filter:blur(12px);
+    z-index:2000;
 
     display:none;
 
@@ -1269,7 +1010,10 @@ nav button.active{
 
     padding:20px;
 
-    z-index:200;
+    background:
+        rgba(2,4,7,.86);
+
+    backdrop-filter:blur(12px);
 }
 
 .overlay.show{
@@ -1283,70 +1027,2012 @@ nav button.active{
 
     overflow-y:auto;
 
+    position:relative;
+
     background:
         linear-gradient(
             145deg,
-            #111720,
-            #090d13
+            #151a20,
+            #090d12
         );
 
     border:
-        1px solid rgba(145,158,170,.18);
+        1px solid rgba(170,180,190,.17);
 
     border-radius:5px;
 
     box-shadow:
         0 30px 100px rgba(0,0,0,.65);
-
-    position:relative;
-
-    animation:modalIn .25s ease;
-}
-
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:translateY(15px) scale(.98);
-    }
-
-    to{
-        opacity:1;
-        transform:none;
-    }
 }
 
 .close{
     position:absolute;
 
-    left:18px;
-    top:18px;
+    left:15px;
+    top:15px;
 
     width:35px;
     height:35px;
 
     border:
-        1px solid rgba(150,160,170,.15);
-
-    background:rgba(5,8,12,.65);
-
-    color:#87919a;
+        1px solid rgba(180,190,200,.15);
 
     border-radius:50%;
+
+    background:#090d12;
+
+    color:#8b959e;
 
     cursor:pointer;
 
     z-index:10;
+
+    font-size:20px;
 }
 
 .close:hover{
-    color:#e0e4e7;
+    color:#e1e5e8;
 }
 
 .modal-content{
     display:grid;
 
-    grid-template-columns:250px 1fr;
+    grid-template-columns:240px 1fr;
 
     gap:30px;
 
     padding:35px;
+}
+
+.modal-cover{
+    height:350px;
+
+    overflow:hidden;
+
+    border:
+        1px solid rgba(160,170,180,.15);
+
+    background:#080b0f;
+}
+
+.modal-cover img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:
+        grayscale(.25)
+        brightness(.72);
+}
+
+.modal-info h2{
+    color:#e4e8eb;
+
+    font-size:29px;
+
+    font-weight:500;
+
+    margin-bottom:7px;
+}
+
+.modal-author{
+    color:#727c85;
+
+    font-size:12px;
+
+    margin-bottom:20px;
+}
+
+.modal-description{
+    color:#969fa7;
+
+    font-size:13px;
+
+    line-height:2;
+
+    margin:20px 0;
+}
+
+.meta{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:9px;
+
+    margin:20px 0;
+}
+
+.meta-box{
+    padding:11px;
+
+    border:
+        1px solid rgba(150,160,170,.10);
+
+    background:#0d1217;
+}
+
+.meta-box span{
+    display:block;
+
+    color:#626d76;
+
+    font-size:9px;
+
+    margin-bottom:5px;
+}
+
+.meta-box strong{
+    color:#cdd4d9;
+
+    font-size:13px;
+}
+
+.modal-tags{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+}
+
+.read-button{
+    border:
+        1px solid rgba(175,185,195,.27);
+
+    background:#1c232a;
+
+    color:#e0e5e9;
+
+    padding:12px 25px;
+
+    border-radius:3px;
+
+    cursor:pointer;
+}
+
+.read-button:hover{
+    background:#272f37;
+}
+
+.unavailable{
+    color:#737d86;
+
+    font-size:12px;
+
+    padding-top:5px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    margin-top:80px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+    color:#555f68;
+
+    font-size:11px;
+
+    border-top:
+        1px solid rgba(150,160,170,.08);
+
+    background:#06080c;
+}
+
+.footer-symbol{
+    color:#818b94;
+
+    font-size:23px;
+
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    header{
+        flex-wrap:wrap;
+    }
+
+    nav{
+        order:3;
+
+        width:100%;
+
+        overflow-x:auto;
+
+        justify-content:flex-start;
+    }
+
+    nav button{
+        flex-shrink:0;
+    }
+
+    .search-box{
+        width:180px;
+    }
+
+    .palace{
+        width:850px;
+
+        transform:
+            translateX(-50%)
+            scale(.85);
+
+        transform-origin:
+            center bottom;
+    }
+
+    .hero{
+        min-height:600px;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    header{
+        padding:10px 4%;
+    }
+
+    .logo-text{
+        font-size:18px;
+    }
+
+    .search-box{
+        width:150px;
+    }
+
+    .hero{
+        min-height:570px;
+    }
+
+    .palace{
+        width:800px;
+
+        transform:
+            translateX(-50%)
+            scale(.65);
+
+        transform-origin:
+            center bottom;
+
+        bottom:15px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero-description{
+        font-size:12px;
+    }
+
+    .books-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:12px;
+    }
+
+    .cover{
+        height:215px;
+    }
+
+    .book-info{
+        padding:10px;
+    }
+
+    .book-title{
+        font-size:12px;
+    }
+
+    .modal-content{
+        grid-template-columns:1fr;
+
+        padding:25px;
+    }
+
+    .modal-cover{
+        width:180px;
+        height:270px;
+
+        margin:auto;
+    }
+
+    .meta{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:400px){
+
+    .search-box{
+        width:135px;
+    }
+
+    .palace{
+        transform:
+            translateX(-50%)
+            scale(.55);
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .cover{
+        height:190px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+    <a
+        href="#"
+        class="logo"
+        onclick="showHome();return false;"
+    >
+
+        <div class="logo-symbol">
+            ✦
+        </div>
+
+        <div class="logo-text">
+            Tarot Club
+        </div>
+
+    </a>
+
+
+    <nav>
+
+        <button
+            class="active"
+            onclick="showHome(this)"
+        >
+            الرئيسية
+        </button>
+
+        <button
+            onclick="showLibrary(this)"
+        >
+            المكتبة
+        </button>
+
+        <button
+            onclick="showPopular(this)"
+        >
+            الأكثر قراءة
+        </button>
+
+        <button
+            onclick="showTopRated(this)"
+        >
+            الأعلى تقييماً
+        </button>
+
+        <button
+            onclick="showFavorites(this)"
+        >
+            المفضلة
+        </button>
+
+    </nav>
+
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            ⌕
+        </span>
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="ابحث في الأرشيف..."
+            oninput="searchBooks()"
+        >
+
+    </div>
+
+</header>
+
+
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-light"></div>
+
+
+    <!-- ==================================================
+         GIANT PALACE
+    ================================================== -->
+
+    <div class="palace">
+
+        <svg
+            viewBox="0 0 900 510"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <!-- Main palace shadow -->
+
+            <path
+                d="
+                M150 510
+                L150 260
+                L210 260
+                L210 205
+                L275 205
+                L275 160
+                L335 160
+                L335 125
+                L450 45
+                L565 125
+                L565 160
+                L625 160
+                L625 205
+                L690 205
+                L690 260
+                L750 260
+                L750 510
+                Z
+                "
+                fill="#11171e"
+            />
+
+
+            <!-- central structure -->
+
+            <path
+                d="
+                M250 510
+                L250 220
+                L300 220
+                L300 170
+                L350 170
+                L350 130
+                L450 65
+                L550 130
+                L550 170
+                L600 170
+                L600 220
+                L650 220
+                L650 510
+                Z
+                "
+                fill="#171f27"
+            />
+
+
+            <!-- left tower -->
+
+            <rect
+                x="105"
+                y="215"
+                width="105"
+                height="295"
+                fill="#0d1319"
+            />
+
+            <path
+                d="
+                M85 215
+                L157 100
+                L230 215
+                Z
+                "
+                fill="#121920"
+            />
+
+
+            <!-- right tower -->
+
+            <rect
+                x="690"
+                y="215"
+                width="105"
+                height="295"
+                fill="#0d1319"
+            />
+
+            <path
+                d="
+                M670 215
+                L742 100
+                L815 215
+                Z
+                "
+                fill="#121920"
+            />
+
+
+            <!-- central roof -->
+
+            <path
+                d="
+                M300 180
+                L450 45
+                L600 180
+                Z
+                "
+                fill="#1b232c"
+            />
+
+
+            <!-- central peak -->
+
+            <path
+                d="
+                M450 25
+                L462 65
+                L438 65
+                Z
+                "
+                fill="#343d46"
+            />
+
+
+            <!-- palace windows -->
+
+            <g
+                fill="#687681"
+                opacity=".30"
+            >
+
+                <path
+                    d="
+                    M130 270
+                    Q157 235 184 270
+                    L184 345
+                    L130 345
+                    Z
+                    "
+                />
+
+                <path
+                    d="
+                    M716 270
+                    Q742 235 769 270
+                    L769 345
+                    L716 345
+                    Z
+                    "
+                />
+
+                <path
+                    d="
+                    M315 235
+                    Q335 205 355 235
+                    L355 315
+                    L315 315
+                    Z
+                    "
+                />
+
+                <path
+                    d="
+                    M385 225
+                    Q410 185 435 225
+                    L435 330
+                    L385 330
+                    Z
+                    "
+                />
+
+                <path
+                    d="
+                    M465 225
+                    Q490 185 515 225
+                    L515 330
+                    L465 330
+                    Z
+                    "
+                />
+
+                <path
+                    d="
+                    M535 235
+                    Q555 205 575 235
+                    L575 315
+                    L535 315
+                    Z
+                    "
+                />
+
+            </g>
+
+
+            <!-- giant central entrance -->
+
+            <path
+                d="
+                M390 510
+                L390 390
+                Q390 315 450 315
+                Q510 315 510 390
+                L510 510
+                Z
+                "
+                fill="#070a0e"
+            />
+
+
+            <!-- entrance frame -->
+
+            <path
+                d="
+                M380 510
+                L380 390
+                Q380 300 450 300
+                Q520 300 520 390
+                L520 510
+                "
+                fill="none"
+                stroke="#59656f"
+                stroke-width="3"
+                opacity=".35"
+            />
+
+
+            <!-- palace lines -->
+
+            <g
+                fill="none"
+                stroke="#7a858e"
+                stroke-width="1"
+                opacity=".18"
+            >
+
+                <path d="M105 215H230"/>
+                <path d="M670 215H795"/>
+
+                <path d="M250 220H650"/>
+                <path d="M300 170H600"/>
+
+                <path d="M335 125H565"/>
+
+            </g>
+
+
+            <!-- mysterious circle -->
+
+            <circle
+                cx="450"
+                cy="165"
+                r="34"
+                fill="none"
+                stroke="#9aa4ac"
+                stroke-width="1"
+                opacity=".18"
+            />
+
+            <path
+                d="
+                M450 135
+                L477 180
+                L423 180
+                Z
+                "
+                fill="none"
+                stroke="#9aa4ac"
+                stroke-width="1"
+                opacity=".18"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <!-- ==================================================
+         HERO FOG
+    ================================================== -->
+
+    <div class="fog"></div>
+
+    <div class="fog-two"></div>
+
+
+    <!-- ==================================================
+         CONTENT
+    ================================================== -->
+
+    <div class="hero-content">
+
+        <div class="symbol">
+            ✦
+        </div>
+
+        <div class="eyebrow">
+            ABOVE THE GREY FOG
+        </div>
+
+        <h1>
+            نادي <span>التاروت</span>
+        </h1>
+
+        <p class="hero-description">
+            فوق الضباب الرمادي، حيث يقف قصر غامض بعيداً عن العالم،
+            يجتمع نادي التاروت وتُحفظ الحكايات داخل أرشيف لا ينتهي.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn btn-primary"
+                onclick="scrollToLibrary()"
+            >
+                دخول الأرشيف
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="scrollToCategories()"
+            >
+                التصنيفات
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<main class="container">
+
+
+    <!-- ==================================================
+         CATEGORIES
+    ================================================== -->
+
+    <section
+        class="section"
+        id="categories"
+    >
+
+        <div class="section-header">
+
+            <div>
+
+                <h2 class="section-title">
+                    أرشيف التصنيفات
+                </h2>
+
+                <div class="section-subtitle">
+                    ARCHIVES
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="categories">
+
+            <button
+                class="category active"
+                onclick="filterCategory('الكل',this)"
+            >
+                الكل
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('فانتازيا',this)"
+            >
+                فانتازيا
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('فانتازيا مظلمة',this)"
+            >
+                فانتازيا مظلمة
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('غموض',this)"
+            >
+                غموض
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('أكشن',this)"
+            >
+                أكشن
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('مغامرة',this)"
+            >
+                مغامرة
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('دراما',this)"
+            >
+                دراما
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('خيال علمي',this)"
+            >
+                خيال علمي
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('رعب',this)"
+            >
+                رعب
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('شريحة من الحياة',this)"
+            >
+                شريحة من الحياة
+            </button>
+
+            <button
+                class="category"
+                onclick="filterCategory('خارق للطبيعة',this)"
+            >
+                خارق للطبيعة
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         LIBRARY
+    ================================================== -->
+
+    <section
+        class="section"
+        id="library"
+    >
+
+        <div class="section-header">
+
+            <div>
+
+                <h2 class="section-title">
+                    مكتبة نادي التاروت
+                </h2>
+
+                <div class="section-subtitle">
+                    THE LIBRARY
+                </div>
+
+                <div
+                    class="library-count"
+                    id="libraryCount"
+                >
+                    10 روايات
+                </div>
+
+            </div>
+
+            <button
+                class="section-action"
+                onclick="showLibrary()"
+            >
+                عرض الكل
+            </button>
+
+        </div>
+
+
+        <div
+            class="books-grid"
+            id="booksGrid"
+        ></div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ======================================================
+     MODAL
+====================================================== -->
+
+<div
+    class="overlay"
+    id="detailsOverlay"
+>
+
+    <div class="modal">
+
+        <button
+            class="close"
+            onclick="closeDetails()"
+        >
+            ×
+        </button>
+
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-symbol">
+        ◇
+    </div>
+
+    نادي التاروت — أرشيف الحكايات فوق الضباب الرمادي
+
+</footer>
+
+
+
+<script>
+
+/* =========================================================
+   BOOKS
+========================================================= */
+
+const books = [
+
+    {
+        id:1,
+
+        title:"Lord of the Mysteries",
+
+        ar:"لورد الغوامض",
+
+        author:"Cuttlefish That Loves Diving",
+
+        categories:[
+            "غموض",
+            "فانتازيا",
+            "رعب"
+        ],
+
+        status:"مكتملة",
+
+        rating:9.4,
+
+        views:980000,
+
+        chapters:1430,
+
+        cover:
+        "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "عالم غامض مليء بالأسرار والآثار الغريبة والآلهة القديمة. يبدأ شاب رحلته في عالم لا يعرف فيه شيئاً عن القوى التي تحيط به."
+    },
+
+
+    {
+        id:2,
+
+        title:"Shadow Slave",
+
+        ar:"عبد الظل",
+
+        author:"Guiltythree",
+
+        categories:[
+            "فانتازيا مظلمة",
+            "أكشن",
+            "مغامرة"
+        ],
+
+        status:"مستمرة",
+
+        rating:9.2,
+
+        views:850000,
+
+        chapters:3000,
+
+        cover:
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "عالم كابوسي مليء بالوحوش والأسرار. يجد شاب نفسه مرتبطاً بقوة غامضة تجبره على مواجهة عالم لا يرحم."
+    },
+
+
+    {
+        id:3,
+
+        title:"Omniscient Reader's Viewpoint",
+
+        ar:"وجهة نظر القارئ الكلي العلم",
+
+        author:"Sing N Song",
+
+        categories:[
+            "فانتازيا",
+            "أكشن",
+            "دراما"
+        ],
+
+        status:"مكتملة",
+
+        rating:9.5,
+
+        views:760000,
+
+        chapters:551,
+
+        cover:
+        "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "قارئ عادي يجد نفسه داخل الرواية التي قرأها لسنوات، لكنه يمتلك معرفة لا يملكها أي شخص آخر."
+    },
+
+
+    {
+        id:4,
+
+        title:"86 -Eighty Six-",
+
+        ar:"86 — إيتي سيكس",
+
+        author:"Asato Asato",
+
+        categories:[
+            "خيال علمي",
+            "أكشن",
+            "دراما"
+        ],
+
+        status:"مستمرة",
+
+        rating:9.0,
+
+        views:640000,
+
+        chapters:0,
+
+        cover:
+        "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "في حرب مستمرة بين دولتين، يعيش الجنود الذين يتم إخفاء وجودهم عن بقية المجتمع داخل ساحة المعركة."
+    },
+
+
+    {
+        id:5,
+
+        title:"Mushoku Tensei",
+
+        ar:"موشوكو تينسي",
+
+        author:"Rifujin na Magonote",
+
+        categories:[
+            "فانتازيا",
+            "مغامرة",
+            "دراما"
+        ],
+
+        status:"مكتملة",
+
+        rating:8.9,
+
+        views:590000,
+
+        chapters:286,
+
+        cover:
+        "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "رجل يحصل على فرصة ثانية في عالم سحري، ويحاول هذه المرة أن يعيش حياته بطريقة مختلفة."
+    },
+
+
+    {
+        id:6,
+
+        title:"Call of the Night",
+
+        ar:"نداء الليل",
+
+        author:"Kotoyama",
+
+        categories:[
+            "شريحة من الحياة",
+            "كوميديا",
+            "خارق للطبيعة"
+        ],
+
+        status:"مكتملة",
+
+        rating:8.7,
+
+        views:420000,
+
+        chapters:200,
+
+        cover:
+        "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "رحلة ليلية هادئة تبدأ مع شاب يكتشف عالماً مختلفاً تماماً عندما يبدأ بالتجول في الليل."
+    },
+
+
+    {
+        id:7,
+
+        title:"Clannad",
+
+        ar:"كلاناد",
+
+        author:"Key",
+
+        categories:[
+            "دراما",
+            "شريحة من الحياة",
+            "مدرسي"
+        ],
+
+        status:"مكتملة",
+
+        rating:9.1,
+
+        views:370000,
+
+        chapters:100,
+
+        cover:
+        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "قصة عن الحياة والصداقات والعائلة والقرارات التي تغير مستقبل الشخص."
+    },
+
+
+    {
+        id:8,
+
+        title:"Reverend Insanity",
+
+        ar:"الحكيم الشيطاني",
+
+        author:"Gu Zhen Ren",
+
+        categories:[
+            "فانتازيا مظلمة",
+            "أكشن",
+            "غموض"
+        ],
+
+        status:"متوقفة",
+
+        rating:9.3,
+
+        views:530000,
+
+        chapters:2334,
+
+        cover:
+        "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "عالم قاسٍ تحكمه القوة والحيلة، حيث لا يمكن الوثوق بأحد وكل قرار قد يغير مصير صاحبه."
+    },
+
+
+    {
+        id:9,
+
+        title:"Deep Sea Embers",
+
+        ar:"جمرات البحر العميق",
+
+        author:"Cuttlefish That Loves Diving",
+
+        categories:[
+            "غموض",
+            "فانتازيا",
+            "رعب"
+        ],
+
+        status:"مكتملة",
+
+        rating:8.8,
+
+        views:310000,
+
+        chapters:1200,
+
+        cover:
+        "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "سفينة غامضة تبحر في بحر لا يعرف أحد ما الذي يختبئ في أعماقه."
+    },
+
+
+    {
+        id:10,
+
+        title:"Mother of Learning",
+
+        ar:"أم التعلم",
+
+        author:"Domagoj Kurmaic",
+
+        categories:[
+            "فانتازيا",
+            "غموض",
+            "مغامرة"
+        ],
+
+        status:"مكتملة",
+
+        rating:9.0,
+
+        views:290000,
+
+        chapters:108,
+
+        cover:
+        "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80",
+
+        description:
+        "طالب سحرة يجد نفسه عالقاً في حلقة زمنية، ويضطر إلى استغلال كل دورة لفهم ما يحدث."
+    }
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentBooks = [...books];
+
+let favorites =
+    JSON.parse(
+        localStorage.getItem("tarotFavorites") || "[]"
+    );
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(list){
+
+    currentBooks = [...list];
+
+    const grid =
+        document.getElementById("booksGrid");
+
+    const count =
+        document.getElementById("libraryCount");
+
+
+    count.textContent =
+        `${list.length} رواية`;
+
+
+    if(list.length === 0){
+
+        grid.innerHTML = `
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ☁
+                </div>
+
+                لا توجد روايات في هذا الجزء من الأرشيف.
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML =
+        list.map(book => {
+
+            const isFavorite =
+                favorites.includes(book.id);
+
+
+            return `
+
+                <article
+                    class="book-card"
+                    onclick="openDetails(${book.id})"
+                >
+
+                    <div class="cover">
+
+                        <img
+                            src="${book.cover}"
+                            alt="${book.ar}"
+                            loading="lazy"
+                        >
+
+                        <div class="card-symbol">
+                            ✦
+                        </div>
+
+
+                        <button
+                            class="favorite ${isFavorite ? "active" : ""}"
+                            onclick="toggleFavorite(event,${book.id})"
+                            aria-label="المفضلة"
+                        >
+                            ${isFavorite ? "★" : "☆"}
+                        </button>
+
+
+                        <div class="status">
+                            ${book.status}
+                        </div>
+
+                    </div>
+
+
+                    <div class="book-info">
+
+                        <div
+                            class="book-title"
+                            title="${book.ar}"
+                        >
+                            ${book.ar}
+                        </div>
+
+
+                        <div class="book-author">
+                            ${book.author}
+                        </div>
+
+
+                        <div class="tags">
+
+                            ${book.categories
+                                .slice(0,3)
+                                .map(
+                                    cat =>
+                                    `<span class="tag">${cat}</span>`
+                                )
+                                .join("")
+                            }
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+function openDetails(id){
+
+    const book =
+        books.find(
+            item => item.id === id
+        );
+
+    if(!book) return;
+
+
+    const overlay =
+        document.getElementById(
+            "detailsOverlay"
+        );
+
+
+    const modal =
+        document.getElementById(
+            "modalContent"
+        );
+
+
+    modal.innerHTML = `
+
+        <div class="modal-cover">
+
+            <img
+                src="${book.cover}"
+                alt="${book.ar}"
+            >
+
+        </div>
+
+
+        <div class="modal-info">
+
+            <h2>
+                ${book.ar}
+            </h2>
+
+
+            <div class="modal-author">
+                ${book.title}
+                — ${book.author}
+            </div>
+
+
+            <div class="modal-tags">
+
+                ${book.categories
+                    .map(
+                        cat =>
+                        `<span class="tag">${cat}</span>`
+                    )
+                    .join("")
+                }
+
+            </div>
+
+
+            <div class="meta">
+
+                <div class="meta-box">
+
+                    <span>
+                        التقييم
+                    </span>
+
+                    <strong>
+                        ★ ${book.rating}
+                    </strong>
+
+                </div>
+
+
+                <div class="meta-box">
+
+                    <span>
+                        المشاهدات
+                    </span>
+
+                    <strong>
+                        ${formatNumber(book.views)}
+                    </strong>
+
+                </div>
+
+
+                <div class="meta-box">
+
+                    <span>
+                        الفصول
+                    </span>
+
+                    <strong>
+                        ${
+                            book.chapters === 0
+                            ? "غير متوفرة"
+                            : book.chapters
+                        }
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <p class="modal-description">
+                ${book.description}
+            </p>
+
+
+            ${
+                book.chapters > 0
+
+                ?
+
+                `
+                    <button
+                        class="read-button"
+                        onclick="startReading(${book.id})"
+                    >
+                        دخول الرواية
+                    </button>
+                `
+
+                :
+
+                `
+                    <div class="unavailable">
+                        هذه الرواية موجودة في الأرشيف،
+                        لكن لم تتم إضافة فصولها بعد.
+                    </div>
+                `
+            }
+
+        </div>
+
+    `;
+
+
+    overlay.classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+function closeDetails(){
+
+    document
+        .getElementById("detailsOverlay")
+        .classList.remove("show");
+
+    document.body.style.overflow =
+        "";
+}
+
+
+document
+    .getElementById("detailsOverlay")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+
+                closeDetails();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   FAVORITE
+========================================================= */
+
+function toggleFavorite(event,id){
+
+    event.stopPropagation();
+
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(
+                item => item !== id
+            );
+
+    }
+    else{
+
+        favorites.push(id);
+
+    }
+
+
+    localStorage.setItem(
+        "tarotFavorites",
+        JSON.stringify(favorites)
+    );
+
+
+    render(currentBooks);
+}
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function showFavorites(button){
+
+    setActive(button);
+
+
+    const result =
+        books.filter(
+            book =>
+                favorites.includes(book.id)
+        );
+
+
+    render(result);
+
+    scrollToLibrary();
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchBooks(){
+
+    const query =
+        document
+            .getElementById("searchInput")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    if(!query){
+
+        render(books);
+
+        return;
+    }
+
+
+    const result =
+        books.filter(book => {
+
+            return (
+
+                book.title
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                book.ar
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                book.author
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                book.categories.some(
+                    category =>
+                        category
+                            .toLowerCase()
+                            .includes(query)
+                )
+
+            );
+
+        });
+
+
+    render(result);
+
+    scrollToLibrary();
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+function filterCategory(
+    category,
+    button
+){
+
+    document
+        .querySelectorAll(".category")
+        .forEach(
+            item =>
+                item.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+
+    if(category === "الكل"){
+
+        render(books);
+
+        return;
+    }
+
+
+    const result =
+        books.filter(
+            book =>
+                book.categories
+                    .includes(category)
+        );
+
+
+    render(result);
+
+    scrollToLibrary();
+}
+
+
+/* =========================================================
+   POPULAR
+========================================================= */
+
+function showPopular(button){
+
+    if(button){
+
+        setActive(button);
+
+    }
+
+
+    const result =
+        [...books].sort(
+            (a,b) =>
+                b.views - a.views
+        );
+
+
+    render(result);
+
+    scrollToLibrary();
+}
+
+
+/* =========================================================
+   TOP RATED
+========================================================= */
+
+function showTopRated(button){
+
+    if(button){
+
+        setActive(button);
+
+    }
+
+
+    const result =
+        [...books].sort(
+            (a,b) =>
+                b.rating - a.rating
+        );
+
+
+    render(result);
+
+    scrollToLibrary();
+}
+
+
+/* =========================================================
+   LIBRARY
+========================================================= */
+
+function showLibrary(button){
+
+    if(button){
+
+        setActive(button);
+
+    }
+
+
+    render(books);
+
+    scrollToLibrary();
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function showHome(button){
+
+    if(button){
+
+        setActive(button);
+
+    }
+
+
+    render(books);
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+}
+
+
+/* =========================================================
+   ACTIVE NAV
+========================================================= */
+
+function setActive(button){
+
+    document
+        .querySelectorAll("nav button")
+        .forEach(
+            item =>
+                item.classList.remove("active")
+        );
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+}
+
+
+/* =========================================================
+   CATEGORIES SCROLL
+========================================================= */
+
+function scrollToCategories(){
+
+    document
+        .getElementById("categories")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+
+/* =========================================================
+   LIBRARY SCROLL
+========================================================= */
+
+function scrollToLibrary(){
+
+    document
+        .getElementById("library")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+
+/* =========================================================
+   READING
+========================================================= */
+
+function startReading(id){
+
+    const book =
+        books.find(
+            item => item.id === id
+        );
+
+
+    if(!book || book.chapters === 0){
+
+        return;
+    }
+
+
+    alert(
+        `سيتم فتح "${book.ar}" بعد إضافة ملفات الفصول إلى الموقع.`
+    );
+}
+
+
+/* =========================================================
+   FORMAT NUMBERS
+========================================================= */
+
+function formatNumber(number){
+
+    if(number >= 1000000){
+
+        return (
+            (number / 1000000)
+                .toFixed(1)
+                .replace(".0","")
+            + "M"
+        );
+
+    }
+
+
+    if(number >= 1000){
+
+        return (
+            (number / 1000)
+                .toFixed(1)
+                .replace(".0","")
+            + "K"
+        );
+
+    }
+
+
+    return number;
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+render(books);
+
+</script>
+
+</body>
+</html>
